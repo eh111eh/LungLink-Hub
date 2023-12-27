@@ -5,7 +5,9 @@ This study explores the correlation between lung cancer survival rates and socie
 
 By investigating the interplay between lung cancer outcomes and societal factors, this research seeks to inform public health policies and resource allocation strategies. The study's findings may offer valuable insights into addressing the complexities of lung cancer on a global level, ultimately contributing to more effective interventions and equitable health outcomes.
 
-## Goal 
+## Selected Theme: HealthCare - Health Equity
+
+## Goal / Purpose
 
 **Value for end-user**:
 - ;
@@ -37,6 +39,14 @@ By investigating the interplay between lung cancer outcomes and societal factors
 **How to get more data?**:
 
 **when update model?**:
+
+## Installation Instructions
+
+## Prerequisites
+
+## Usage Guidelines
+
+## Reference
 
 # Collaborators
 - Minha Kim
