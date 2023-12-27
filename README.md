@@ -42,14 +42,14 @@ HealthCare - Health Equity
 **when update model?**:
 
 ## Usage
+**URL**
+https://lunglink-hub-breathe-smart-together.onrender.com
+
 **Installation Instructions**:
 
 **Prerequisites**:
 
 **Usage Guidelines**:
-
-**URL**
-https://lunglink-hub-breathe-smart-together.onrender.com
 
 ## Reference
 - Lung Cancer Survival Rates : https://gco.iarc.fr/overtime/en/dataviz/trends
