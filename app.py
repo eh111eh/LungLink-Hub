@@ -27,7 +27,7 @@ DATA = [{
 
 @app.route("/")
 def hello_hacks():
-  return render_template('home.html', jobs=JOBS)
+  return render_template('home.html')
 
 
 @app.route("/api/data")
