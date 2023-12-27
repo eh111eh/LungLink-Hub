@@ -47,6 +47,15 @@ By investigating the interplay between lung cancer outcomes and societal factors
 ## Usage Guidelines
 
 ## Reference
+- Lung Cancer Survival Rates : https://gco.iarc.fr/overtime/en/dataviz/trends
+- Proportion of Population Pushed Below 3.65 Poverty Line by Out-of-Pocket Health Care Expenditure : https://data.worldbank.org/indicator/SH.UHC.NOP2.ZS
+- Forest Area Coverage : https://data.worldbank.org/indicator/AG.LND.FRST.ZS
+- Current Health Expenditure (% of GDP) : https://data.worldbank.org/indicator/SH.XPD.CHEX.GD.ZS
+- Domestic General Government Health Expenditure per Capita (Current US Dollars) : https://data.worldbank.org/indicator/SH.XPD.GHED.PC.CD
+- Out-of-Pocket Expenditure per Capita (Current US Dollars) : https://data.worldbank.org/indicator/SH.XPD.OOPC.PC.CD
+- Physicians (Per 1000 People) : https://data.worldbank.org/indicator/SH.MED.PHYS.ZS
+- Incidence of Tuberculosis (Per 100,000 People) : https://data.worldbank.org/indicator/SH.TBS.INCD
+- Urban Population (% of Total Population) : https://data.worldbank.org/indicator/SP.URB.TOTL.IN.ZS"
 
 # Collaborators
 - Minha Kim
