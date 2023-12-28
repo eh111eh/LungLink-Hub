@@ -1,33 +1,23 @@
 from flask import Flask, render_template, jsonify
+from database import engine
+from sqlalchemy import text
 
 app = Flask(__name__)
 
-DATA = [{
-    'id': 1,
-    'title': 'Data Analyst',
-    'location': 'Korea',
-    'salary': 'Rs. 10,00,000'
-}, {
-    'id': 2,
-    'title': 'Data Scientist',
-    'location': 'UK',
-    'salary': 'Rs. 15,00,000'
-}, {
-    'id': 3,
-    'title': 'Frontend Engineer',
-    'location': 'Remote',
-    'salary': 'Rs. 12,00,000'
-}, {
-    'id': 4,
-    'title': 'Backend Engineer',
-    'location': 'San Francisco, USA',
-    'salary': '$120,000'
-}]
+
+def load_jobs_from_db():
+  with engine.connect() as conn:
+    result = conn.execute(text("select * from jobs"))
+    jobs = []
+    for row in result.all():
+      jobs.append(dict(row))
+    return jobs
 
 
 @app.route("/")
 def hello_hacks():
-  return render_template('home.html')
+  jobs = load_jobs_from_db()
+  return render_template('home.html', jobs=jobs)
 
 
 @app.route("/api/data")
