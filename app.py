@@ -4,25 +4,12 @@ from sqlalchemy import text
 
 app = Flask(__name__)
 
-
-def load_jobs_from_db():
-  with engine.connect() as conn:
-    result = conn.execute(text("select * from jobs"))
-    jobs = []
-    for row in result.all():
-      jobs.append(dict(row))
-    return jobs
-
-
 @app.route("/")
 def hello_hacks():
-  jobs = load_jobs_from_db()
-  return render_template('home.html', jobs=jobs)
+  return render_template('home.html')
 
 
-@app.route("/api/data")
-def list_data():
-  return jsonify(DATA)
+
 
 
 if __name__ == "__main__":
