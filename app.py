@@ -4,12 +4,28 @@ from sqlalchemy import text
 
 app = Flask(__name__)
 
+def load_X_from_db():
+    with engine.connect() as conn:
+        result = conn.execute(text("select * from X"))
+        X = []
+        for row in result.all():
+            X.append(dict(zip(result.keys(), row)))
+        return X
+
 @app.route("/")
 def hello_hacks():
-  return render_template('home.html')
+    X = load_X_from_db()
+    return render_template('home.html', jobs=X)
+
+@app.route('/statistics')
+def statistics():
+    X = load_X_from_db()
+    return render_template('stat.html', X=X)
 
 
-
+@app.route("/api/stat")
+def list_stat():
+  return jsonify(X)
 
 
 if __name__ == "__main__":
