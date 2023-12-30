@@ -5,29 +5,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Statistics</title>
-  <style>
-    body {margin:2em;}
-  </style>
 </head>
 
 <body>
-  <h1>Statistics</h1>
-  <p>We grouped countries into four groups, ranging from "Low" to "Very High," based on their Human Development Index (HDI). Our analysis involved seven datasets from the WorldBank, exploring factors affecting lung cancer survival rates. The main dataset, X DataFrame, is organized by country and year, featuring attributes like poverty, forest coverage, and health expenditures. The y DataFrame focuses on countries and years, examining the age-standardized rate of mortality for lung cancer.</p>
 
-  <table border="1">
-    <tr>
-      {% for column in X[0].keys() %}
-        <th>{{ column }}</th>
-      {% endfor %}
-    </tr>
-    {% for row in X %}
-      <tr>
-        {% for value in row.values() %}
-          <td>{{ value }}</td>
+  <h1>Statistics</h1>
+    <p>We grouped countries into four groups, ranging from "Low" to "Very High," based on their Human Development Index (HDI). Our analysis involved seven datasets from the WorldBank, exploring factors affecting lung cancer survival rates. The main dataset, X DataFrame, is organized by country and year, featuring attributes like poverty, forest coverage, and health expenditures. The y DataFrame focuses on countries and years, examining the age-standardized rate of mortality for lung cancer.</p>
+      <table border="1">
+        <tr>
+          {% for column in X[0].keys() %}
+            <th>{{ column }}</th>
+          {% endfor %}
+        </tr>
+        {% for row in X %}
+          <tr>
+            {% for value in row.values() %}
+              <td>{{ value }}</td>
+            {% endfor %}
+          </tr>
         {% endfor %}
-      </tr>
-    {% endfor %}
-  </table>
+      </table>
 
 </body>
 
