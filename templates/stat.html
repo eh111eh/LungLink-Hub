@@ -6,33 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Statistics</title>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script>
-    function filterTable() {
-      var countryFilter = $("#searchCountry").val().toLowerCase();
-      var yearFilter = $("#searchYear").val().toLowerCase();
-
-      $("table tr.data-row").each(function () {
-        var countryColumn = $(this).find("td:eq(0)").text().toLowerCase();
-        var yearColumn = $(this).find("td:eq(1)").text().toLowerCase();
-
-        if ((countryFilter === "" || countryColumn.includes(countryFilter)) &&
-          (yearFilter === "" || yearColumn.includes(yearFilter))) {
-          $(this).show();
-        } else {
-          $(this).hide();
-        }
-      });
+  <style>
+    .mini-window {
+      max-height: 300px; 
+      overflow-y: auto; 
+      border: 1px solid #ccc; 
     }
-
-    $(document).ready(function () {
-      // Initially hide rows beyond the first 10
-      $("table tr.data-row:gt(9)").hide();
-
-      $("#searchCountry, #searchYear").on('input', function () {
-        filterTable();
-      });
-    });
-  </script>
+  </style>
 </head>
 
 <body>
@@ -45,34 +25,60 @@
   <label for="searchYear">Search Year:</label>
   <input type="text" id="searchYear" placeholder="Type year...">
 
-  <table border="1">
-    <tr>
-      <th>Country</th>
-      <th>Year</th>
-      <th>C Dollar2 Poverty</th>
-      <th>C Forest Area</th>
-      <th>C Health Expenditure</th>
-      <th>C Out of Pocket</th>
-      <th>C Physician</th>
-      <th>C Tuberculosis</th>
-      <th>C Urban Pop</th>
-    </tr>
-    {% for row in X %}
-      <tr class="data-row">
-        <td>{{ row['country'] }}</td>
-        <td>{{ row['year'] }}</td>
-        <td>{{ row['c_dollar2_poverty'] }}</td>
-        <td>{{ row['c_forest_area'] }}</td>
-        <td>{{ row['c_health_expenditure'] }}</td>
-        <td>{{ row['c_out_of_pocket'] }}</td>
-        <td>{{ row['c_physician'] }}</td>
-        <td>{{ row['c_tuberculosis'] }}</td>
-        <td>{{ row['c_urban_pop'] }}</td>
+  <div class="mini-window">
+    <table border="1">
+      <tr>
+        <th>Country</th>
+        <th>Year</th>
+        <th>C Dollar2 Poverty</th>
+        <th>C Forest Area</th>
+        <th>C Health Expenditure</th>
+        <th>C Out of Pocket</th>
+        <th>C Physician</th>
+        <th>C Tuberculosis</th>
+        <th>C Urban Pop</th>
       </tr>
-    {% endfor %}
-  </table>
+      {% for row in X %}
+        <tr class="data-row">
+          <td>{{ row['country'] }}</td>
+          <td>{{ row['year'] }}</td>
+          <td>{{ row['c_dollar2_poverty'] }}</td>
+          <td>{{ row['c_forest_area'] }}</td>
+          <td>{{ row['c_health_expenditure'] }}</td>
+          <td>{{ row['c_out_of_pocket'] }}</td>
+          <td>{{ row['c_physician'] }}</td>
+          <td>{{ row['c_tuberculosis'] }}</td>
+          <td>{{ row['c_urban_pop'] }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $("#searchCountry, #searchYear").on('input', function () {
+        filterTable();
+      });
+
+      function filterTable() {
+        var countryFilter = $("#searchCountry").val().toLowerCase();
+        var yearFilter = $("#searchYear").val().toLowerCase();
+
+        $("table tr.data-row").each(function () {
+          var countryColumn = $(this).find("td:eq(0)").text().toLowerCase();
+          var yearColumn = $(this).find("td:eq(1)").text().toLowerCase();
+
+          if ((countryFilter === "" || countryColumn.includes(countryFilter)) &&
+            (yearFilter === "" || yearColumn.includes(yearFilter))) {
+            $(this).show();
+          } else {
+            $(this).hide();
+          }
+        });
+      }
+    });
+  </script>
 
 </body>
 
 </html>
-
