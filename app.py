@@ -1,6 +1,9 @@
 from flask import Flask, render_template, jsonify
 from database import engine
 from sqlalchemy import text
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
 
