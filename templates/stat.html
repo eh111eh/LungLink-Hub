@@ -97,7 +97,255 @@
   </script>
   
   <h1>Mortality</h1>
+  <script>
+    function myFunction(){
+      alert('test')
+    }
+    $(function () {
 
+        // Prepare demo data
+        var data = [
+          {
+              "hc-key": "ar",
+              "value": 28.843809057368400
+          },
+          {
+              "hc-key": "au",
+              "value": 25.65256207473680
+          },
+          {
+              "hc-key": "at",
+              "value": 31.16157944473690
+          },
+          {
+              "hc-key": "be",
+              "value": 46.750982421176500
+          },
+          {
+              "hc-key": "bu",
+              "value": 41.17388472263160
+          },
+          {
+              "hc-key": "br",
+              "value": 15.646693143684200
+          },
+          {
+              "hc-key": "ca",
+              "value": 35.38848731
+          },
+          {
+              "hc-key": "sw",
+              "value": 27.751320848888900
+          },
+          {
+              "hc-key": "cl",
+              "value": 17.047671986842100
+          },
+          {
+              "hc-key": "co",
+              "value": 12.338969353333300
+          },
+          {
+              "hc-key": "cr",
+              "value": 7.924456649111110
+          },
+          {
+              "hc-key": "cu",
+              "value": 37.010486535000000
+          },
+          {
+              "hc-key": "cz",
+              "value": 45.449493221579000
+          },
+          {
+              "hc-key": "de",
+              "value": 34.45582677105260
+          },
+          {
+              "hc-key": "dk",
+              "value": 35.03475058631580
+          },
+          {
+              "hc-key": "ec",
+              "value": 6.126579872555560
+          },
+          {
+              "hc-key": "es",
+              "value": 41.09032844333330
+          },
+          {
+              "hc-key": "ee",
+              "value": 50.24149916263160
+          },
+          {
+              "hc-key": "fi",
+              "value": 27.01079146578950
+          },
+          {
+              "hc-key": "fr",
+              "value": 40.78662518294120
+          },
+          {
+              "hc-key": "gb",
+              "value": 31.994856092941200
+          },
+          {
+              "hc-key": "gr",
+              "value": 47.946285182777800
+          },
+          {
+              "hc-key": "hr",
+              "value": 55.86061988611110
+          },
+          {
+              "hc-key": "hu",
+              "value": 71.65573150210530
+          },
+          {
+              "hc-key": "ie",
+              "value": 33.346614559375
+          },
+          {
+              "hc-key": "is",
+              "value": 25.044395325789500
+          },
+          {
+              "hc-key": "il",
+              "value": 25.381275106315800
+          },
+          {
+              "hc-key": "it",
+              "value": 37.86586193166670
+          },
+          {
+              "hc-key": "jp",
+              "value": 28.150310484210500
+          },
+          {
+              "hc-key": "lt",
+              "value": 48.83370140947370
+          },
+          {
+              "hc-key": "lv",
+              "value": 50.923865527894700
+          },
+          {
+              "hc-key": "mx",
+              "value": 9.922854737500000
+          },
+          {
+              "hc-key": "mt",
+              "value": 32.088042718888900
+          },
+          {
+              "hc-key": "no",
+              "value": 27.520503832352900
+          },
+          {
+              "hc-key": "nz",
+              "value": 25.632613386470600
+          },
+          {
+              "hc-key": "pl",
+              "value": 58.20858915421050
+          },
+          {
+              "hc-key": "pt",
+              "value": 28.994062855263200
+          },
+          {
+              "hc-key": "ro",
+              "value": 47.43029119157900
+          },
+          {
+              "hc-key": "sg",
+              "value": 32.190602532777800
+          },
+          {
+              "hc-key": "si",
+              "value": 43.9991161363158
+          },
+          {
+              "hc-key": "se",
+              "value": 18.076822828947400
+          },
+          {
+              "hc-key": "uy",
+              "value": 42.95926578444450
+          }
+
+        ];
+
+        // Initiate the chart
+        $('#container').highcharts('Map', {
+
+            title : {
+                text : 'Global Patterns in Lung Cancer: Gender-Specific Mortality Rates and Implications for Public Health Strategies'
+            },
+
+            subtitle : {
+                text : 'Source map: <a href="https://code.highcharts.com/mapdata/custom/world-robinson.js">World, Robinson projection, medium resolution</a>'
+            },
+
+            mapNavigation: {
+                enabled: true,
+                buttonOptions: {
+                    verticalAlign: 'bottom'
+                }
+            },
+
+            colorAxis: {
+                min: 0
+            },
+
+            series : [{
+                data : data,
+                mapData: Highcharts.maps['custom/world-robinson'],
+                joinBy: 'hc-key',
+                name: 'ASR',
+                states: {
+                    hover: {
+                        color: '#BADA55'
+                    }
+                },
+                dataLabels: {
+                    enabled: true,
+                    useHTML: true,
+                    format: '<a class="my-link" onclick="myFunction()">{point.name}</a>'
+                }
+            }]
+        });
+    });
+
+  </script>
+  <style>
+    #container {
+        height: 500px; 
+        min-width: 310px; 
+        max-width: 800px; 
+        margin: 0 auto; 
+    }
+    .loading {
+        margin-top: 10em;
+        text-align: center;
+        color: gray;
+    }
+
+    .my-link {
+      text-decoration: underline;
+    }
+
+    .my-link:hover {
+      cursor:pointer
+    }
+  </style>
+  <script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+  <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+  <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/mapdata/custom/world-robinson.js"></script>
+
+  <div id="container"></div>
+  <p>The Age-standardized rates (ASR) of mortality due to lung cancer provide a comprehensive global perspective on the impact of lung cancer following diagnosis. Analyzing this data across 1235 countries annually unveils nuanced gender-specific patterns in incidence rates. The ASR (female) and ASR (male) illuminate disparities in the burden of lung cancer, shedding light on potential epidemiological, socio-economic, and healthcare factors influencing outcomes. These findings offer crucial insights for public health interventions, resource allocation, and targeted cancer prevention strategies, aiding global efforts to mitigate the impact of lung cancer and enhance overall health outcomes on a worldwide scale.</p>
 </body>
 
 </html>
