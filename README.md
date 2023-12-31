@@ -43,7 +43,7 @@ HealthCare - Health Equity
 
 ## Usage
 **URL**
-https://lunglink-hub-breathe-smart-together.onrender.com
+https://lunglink-hub.onrender.com
 
 **Installation Instructions**:
 
