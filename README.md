@@ -1,4 +1,4 @@
-# Global Correlations of Lung Cancer Survival Rates with Societal Factors
+# LungLink Hub: Global Correlations of Lung Cancer Survival Rates with Societal Factors
 
 ## Abstract / Summary
 This study explores the correlation between lung cancer survival rates and societal factors on a global scale. While existing research has linked lung cancer to environmental pollutants and resource accessiblity in the U.S., little is known about how broader societal influences contribute to varied health outcomes worldwide. Through a comprehensive analysis of diverse variables, including healthcare accessibility, socio-economic conditions, and cultural factors, this research aims to uncover patterns and relationships that can deepen our understanding of lung cancer survival dynamics.
