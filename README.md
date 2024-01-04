@@ -28,6 +28,9 @@ The performance of the research can be evaluated through the following metrics:
 **Define expected result**:
 The expected result is a comprehensive understanding of the relationships between societal factors and lung cancer survival rates globally. Additionally, the research aims to identify patterns and variations that can guide the development of targeted interventions for different regions.
 
+## Tool
+Python, Flask, SQL(MySQ)L, HTML/CSS/JavaScript
+
 ## Data
 
 **Source**: 
