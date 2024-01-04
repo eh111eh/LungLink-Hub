@@ -18,13 +18,6 @@ This research aims to provide valuable insights for policymakers, healthcare pro
   - Output: Lung cancer survival rates by country and year.
   - Type of Problems: Exploratory data analysis, correlation analysis, regression analysis.
 
-**How to evaluate performance**: <br/>
-The performance of the research can be evaluated through the following metrics:
-
-- Correlation coefficients between societal factors and lung cancer survival rates.
-- Mean Squared Error (MSE) for regression models predicting lung cancer survival rates.
-- F1 Score for classification models assessing the impact of societal factors on survival outcomes.
-
 ## Tool
 Python, Flask, SQL(MySQ)L, HTML/CSS/JavaScript
 
@@ -47,8 +40,16 @@ The input features in the X dataframe include:
 - c_tuberculosis: Incidence of Tuberculosis (Per 100,000 People)
 - c_urban_pop: The Percentage of the Total Population living in Urban Areas
 
+## Model
 **Model in Use**: <br/> 
 Linear Regression, Adaboost, GBRT, Random Forest, Stacking, Decision Tree, LSTM (Neural Network)
+
+**How to evaluate performance**: <br/>
+The performance of the research can be evaluated through the following metrics:
+
+- Correlation coefficients between societal factors and lung cancer survival rates.
+- Mean Squared Error (MSE) for regression models predicting lung cancer survival rates.
+- F1 Score for classification models assessing the impact of societal factors on survival outcomes.
 
 ## Usage
 **URL**: <br/>
