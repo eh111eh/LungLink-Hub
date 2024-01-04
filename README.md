@@ -25,9 +25,6 @@ The performance of the research can be evaluated through the following metrics:
 - Mean Squared Error (MSE) for regression models predicting lung cancer survival rates.
 - F1 Score for classification models assessing the impact of societal factors on survival outcomes.
 
-**Define expected result**: <br/>
-The expected result is a comprehensive understanding of the relationships between societal factors and lung cancer survival rates globally. Additionally, the research aims to identify patterns and variations that can guide the development of targeted interventions for different regions.
-
 ## Tool
 Python, Flask, SQL(MySQ)L, HTML/CSS/JavaScript
 
@@ -52,9 +49,6 @@ The input features in the X dataframe include:
 
 **Model in Use**: <br/> 
 Linear Regression, Adaboost, GBRT, Random Forest, Stacking, Decision Tree, LSTM (Neural Network)
-
-**when update model?**: <br/>
-TBD
 
 ## Usage
 **URL**: <br/>
