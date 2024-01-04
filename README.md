@@ -10,8 +10,8 @@ HealthCare - Health Equity
 
 ## Goal / Purpose
 
-**Value for end-user**
-- This research aims to provide valuable insights for policymakers, healthcare professionals, and public health organizations. By understanding the complex interplay between societal factors and lung cancer outcomes, it contributes to the development of more effective interventions and strategies for improving global health equity.
+**Value for end-user** <br/>
+This research aims to provide valuable insights for policymakers, healthcare professionals, and public health organizations. By understanding the complex interplay between societal factors and lung cancer outcomes, it contributes to the development of more effective interventions and strategies for improving global health equity.
 
 **Input, output, type of problems**
   - Input: Seven key factors including healthcare accessibility, socio-economic conditions, and cultural influences.
