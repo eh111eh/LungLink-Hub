@@ -10,7 +10,7 @@ HealthCare - Health Equity
 
 ## Goal / Purpose
 
-**Value for end-user** <br/>
+**Value for end-user**: <br/>
 This research aims to provide valuable insights for policymakers, healthcare professionals, and public health organizations. By understanding the complex interplay between societal factors and lung cancer outcomes, it contributes to the development of more effective interventions and strategies for improving global health equity.
 
 **Input, output, type of problems**
@@ -18,14 +18,14 @@ This research aims to provide valuable insights for policymakers, healthcare pro
   - Output: Lung cancer survival rates by country and year.
   - Type of Problems: Exploratory data analysis, correlation analysis, regression analysis.
 
-**How to evaluate performance** <br/>
+**How to evaluate performance**: <br/>
 The performance of the research can be evaluated through the following metrics:
 
 - Correlation coefficients between societal factors and lung cancer survival rates.
 - Mean Squared Error (MSE) for regression models predicting lung cancer survival rates.
 - F1 Score for classification models assessing the impact of societal factors on survival outcomes.
 
-**Define expected result** <br/>
+**Define expected result**: <br/>
 The expected result is a comprehensive understanding of the relationships between societal factors and lung cancer survival rates globally. Additionally, the research aims to identify patterns and variations that can guide the development of targeted interventions for different regions.
 
 ## Tool
@@ -33,13 +33,13 @@ Python, Flask, SQL(MySQ)L, HTML/CSS/JavaScript
 
 ## Data
 
-**Source** <br/>
+**Source**: <br/>
 The data is sourced from the WorldBank site and covers multiple countries globally.
 
-**Quantity, shape, type** <br/>
+**Quantity, shape, type**: <br/>
 The dataset consists of multiple dataframes. The primary dataframe, denoted as X, contains information for different countries and years. The observations (rows) are indexed by the 'country' and further contextualized by the 'year' attribute, with columns representing various features such as poverty proportion, forest area, health expenditure, etc. There is also a dataframe denoted as y_mortality containing data on the age-standardized rate of mortality for lung cancer.
 
-**Input features** <br/>
+**Input features**: <br/>
 The input features in the X dataframe include:
 
 - c_dollar2_poverty: Proportion of Population Pushed Below 3 dollar and 65 cents Poverty Line by Out-of-Pocket Health Care Expenditure
@@ -50,14 +50,14 @@ The input features in the X dataframe include:
 - c_tuberculosis: Incidence of Tuberculosis (Per 100,000 People)
 - c_urban_pop: The Percentage of the Total Population living in Urban Areas
 
-**Model in Use** <br/> 
+**Model in Use**: <br/> 
 Linear Regression, Adaboost, GBRT, Random Forest, Stacking, Decision Tree, LSTM (Neural Network)
 
-**when update model?** <br/>
+**when update model?**: <br/>
 TBD
 
 ## Usage
-**URL** <br/>
+**URL**: <br/>
 https://lunglink-hub.onrender.com
 
 **Installation Instructions**
