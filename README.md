@@ -19,7 +19,7 @@ This research aims to provide valuable insights for policymakers, healthcare pro
   - Type of Problems: Exploratory data analysis, correlation analysis, regression analysis.
 
 ## Tool
-Python, Flask, SQL(MySQ)L, HTML/CSS/JavaScript
+Python, Flask, SQL(MySQL), HTML/CSS/JavaScript
 
 ## Data
 
