@@ -2,195 +2,308 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Statistics</title>
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <meta name="description" content="Description of site" />
+</head>
+
   <style>
+    @font-face {
+      font-family: "Bogart-Semibold";
+      src: url("https://assets.codepen.io/383755/bogart-semibold.woff2") format("woff2");
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    header:after,
+    nav:after,
+    footer:after,
+    .module-block:after,
+    .gallery:after,
+    .social:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden;
+    }
+
+
+    * {
+      /* Universal reset: */
+      margin:0;
+      padding:0;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #fff;
+    }
+
+
     body {
-      padding: 30px;
-      background: oklch(15.4% 0.057 148.24);
-      color: oklch(97% 0.057 148.24);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-        Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      font-size: 16px;
+      line-height: 1.5;
+      font-family: "Lexend Mega";
+      color: #08350e;
+      background: #eeece5;
+      background: #eeece5;
+      background: #eeece5;
+    }
+
+    header, footer, article, section, nav, {
+      /* Giving a display value to the HTML5 rendered elements: */
+      display:block;
+    }
+
+    img { 
+      border-radius: 100%; 
+      max-width: 100%; 
+      display: block;
+    }
+
+    a {
+      color:#fe4e01;
+      text-decoration:none;
+      -webkit-transition: all .3s ease-in-out;
+      -moz-transition: all .3s ease-in-out;
+      -o-transition: all .3s ease-in-out;
+      transition: all .3s ease-in-out;
+      font-family: "Bogart-Semibold";
+    }
+
+    a:hover, a:focus { 
+      color: #eeece5;
+    }
+
+    a img {
+      border:none;
+    }
+
+    h1 {
+      font-size: 50px;
       margin: 0;
-    }
-    main {
-      display: grid;
-      margin-block: 2rem;
-      min-height: calc(100dvh - 4rem);
-      padding: 4rem 2rem;
-      place-content: center;
-      position: relative;
-
-      & :is(h1, p) {
-        line-height: 1.1;
-        margin: 0;
-      }
-
-      & p {
-        line-height: 1.45;
-        margin-block-start: 1rem;
-      }
+      color: #fe4e01;
+      font-weight: normal; 
+      line-height: 1;
+      font-family: "Bogart-Semibold";
     }
 
-    .content {
-      margin-inline: auto;
-      max-width: 40ch;
+    h2 {
+      font-size: 24px;
+      letter-spacing:2px;
+      text-transform: uppercase;
+      font-weight: normal; 
+      margin: 0 0 24px; 
+      line-height: 1;
+      font-family: "Bogart-Semibold";
+    }
+
+    h3 {
+      font-size: 30px;
+      font-weight:
+      font-family: "Bogart-Semibold";normal; 
+      margin: 0 0 24px; 
+      line-height: 1;
+      font-family: "Bogart-Semibold";
+    }
+
+    p {
+      font-family: 'Vollkorn', serif;
+      margin-bottom: 24px;
+    }
+
+
+
+    /*-------------------------------------------
+
+          Header
+    -------------------------------------------*/
+
+    header { 
+      margin: 20px 40px 60px;
+      font-family: "Bogart-Semibold";
+    }
+
+    header div { 
+      margin-top: 40px; 
+      width: 100%; 
+      float: left; 
+    }
+
+    header p { 
+      color: #fe4e01; 
+      font-size: 18px;
+      margin: 0;
+      font-family: "Bogart-Semibold";
+    }
+
+    /*-------------------------------------------
+
+          Footer
+    -------------------------------------------*/
+
+    footer {
+      padding: 40px;
+      background: #fff;
+    }
+
+    .col { 
+      float: left;
+      width: 21%;
+      margin: 0 5% 40px 0;
+    }
+
+    .col:last-of-type { 
+      margin-right: 0;
+    }
+
+    footer h2 { font-size: 18px; margin-bottom: 40px;}
+
+    footer h3 { 
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed rgba(0,0,0,.3);
+      font-size: 18px;
+    }
+
+    footer  ul {
+      margin-left: 20px;
+    }
+
+    footer  li { 
+      color: rgba(0,0,0,.1); /* border color */
+    }
+
+    footer a { font-size: 14px; }
+
+    footer p {
+      margin-bottom: 0;
+      clear: both;
+      font-family: "Bogart-Semibold";
       text-align: center;
     }
+
+    .up {
+      margin-top: 50px; 
+    }
+
+    .up a { 
+      background: rgba(0, 0, 0, .25);
+      font-size: 30px;
+      padding: 12px 10px;
+      border-radius: 10px;
+      text-shadow: 1px 1px 2px #fff;
+    }
+
+    .up a:hover, .up a:focus { 
+      color: rgba(0, 0, 0, .45);
+      text-decoration: none;
+
+    }
+
+    /*-------------------------------------------
+
+          General
+    -------------------------------------------*/
+
+    .page-wrap {
+      max-width:1000px;
+      padding: 0 20px; 
+      margin:0 auto; /* center the content by defining a width and using this margin value */
+    }
+
+    .module-block {
+      background-color: #fff;
+      margin:0 0 70px 0;
+      padding: 40px;
+      -webkit-box-shadow: inset 0px 0px 13px rgba(68, 68, 68, 0.1); 
+      -moz-box-shadow: inset 0px 0px 13px rgba(68, 68, 68, 0.1); 
+      box-shadow: inset 0px 0px 13px rgba(68, 68, 68, 0.1);
+      border: 1px solid rgba(0, 0, 0, .1);
+    }
+
+    .module-block h2 { 
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+      border-bottom: 1px dashed rgba(0,0,0,.3);
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#searchCountry, #searchYear").on('input', function () {
+        filterTable();
+      });
+
+      function filterTable() {
+        var countryFilter = $("#searchCountry").val().toLowerCase();
+        var yearFilter = $("#searchYear").val().toLowerCase();
+
+        $("table tr.data-row").each(function () {
+          var countryColumn = $(this).find("td:eq(0)").text().toLowerCase();
+          var yearColumn = $(this).find("td:eq(1)").text().toLowerCase();
+
+          if ((countryFilter === "" || countryColumn.includes(countryFilter)) &&
+            (yearFilter === "" || yearColumn.includes(yearFilter))) {
+            $(this).show();
+          } else {
+            $(this).hide();
+          }
+        });
+      }
+    });
+  </script>
+
+  <style>
     .mini-window {
       max-height: 300px; 
       overflow-y: auto; 
       border: 1px solid #ccc; 
     }
-    @keyframes lights {
-      0% {
-        opacity: 0;
-      }
-      30% {
-        opacity: 0;
-      }
-      40% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-      }
-    }
-
-    .lit {
-      animation: 2s linear infinite lights;
-
-      &.yellow {
-        animation-delay: 0.5s;
-      }
-
-      &.blue {
-        animation-delay: 1s;
-      }
-
-      &.red {
-        animation-delay: 1.5s;
-      }
-    }
-
-    .lights {
-      align-items: top;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-      position: absolute;
-      inset-inline: 0;
-
-      &.top {
-        top: 0;
-      }
-
-      &.bottom {
-        bottom: 0;
-        rotate: 180deg;
-      }
-
-      & svg {
-        display: block;
-        width: 100%;
-      }
-
-      & svg:nth-child(2) ~ svg {
-        display: none;
-
-        @media (min-width: 400px) {
-          display: block;
-        }
-      }
-
-      & svg:nth-child(3) ~ svg {
-        display: none;
-
-        @media (min-width: 500px) {
-          display: block;
-        }
-      }
-
-      & svg:nth-child(4) ~ svg {
-        display: none;
-
-        @media (min-width: 600px) {
-          display: block;
-        }
-      }
-    }
-
-    #lights-def {
-      display: block;
-      width: 0;
-      height: 0;
-      overflow: hidden;
-    }
   </style>
-</head>
 
-<body>
-  <main>
-  <div class="lights top">
-    <svg viewBox="0 0 161 54">
-      <use xlink:href="#holiday-lights" />
-    </svg>
-    <svg viewBox="0 0 161 54">
-      <use xlink:href="#holiday-lights" />
-    </svg>
-    <svg viewBox="0 0 161 54">
-      <use xlink:href="#holiday-lights" />
-    </svg>
-    <svg viewBox="0 0 161 54">
-      <use xlink:href="#holiday-lights" />
-    </svg>
-    <svg viewBox="0 0 161 54">
-      <use xlink:href="#holiday-lights" />
-    </svg>
-    <svg viewBox="0 0 161 54">
-      <use xlink:href="#holiday-lights" />
-    </svg>
-  </div>
-  <div class="lights bottom">
-    <svg viewBox="0 0 161 54">
-      <use xlink:href="#holiday-lights" />
-    </svg>
-    <svg viewBox="0 0 161 54">
-      <use xlink:href="#holiday-lights" />
-    </svg>
-    <svg viewBox="0 0 161 54">
-      <use xlink:href="#holiday-lights" />
-    </svg>
-    <svg viewBox="0 0 161 54">
-      <use xlink:href="#holiday-lights" />
-    </svg>
-    <svg viewBox="0 0 161 54">
-      <use xlink:href="#holiday-lights" />
-    </svg>
-    <svg viewBox="0 0 161 54">
-      <use xlink:href="#holiday-lights" />
-    </svg>
-  </div>
+  <body>
+    <section class="page-wrap">
+      <header> 
+        <div>
+          <h1>Statistics</h1><br>
+          <p>
+            We selected <b><i>seven factors</b></i> believed to influence <b><i>lung cancer survival rates</b></i>, resulting in a total of seven datasets, all sourced from the WorldBank. The eighth dataset focuses on lung cancer survival rates by country and year. 3456 countries are included in the dataset.</p>
+        </div>
+      </header>
 
-  <h1>Statistics</h1>
-  <p>
-    We selected <b><i>seven factors</b></i> believed to influence <b><i>lung cancer survival rates</b></i>, resulting in a total of seven datasets, all sourced from the WorldBank. The eighth dataset focuses on lung cancer survival rates by country and year. 3456 countries are included in the dataset.
+      <article id="block1" class="module-block">
 
-    The dataFrame's attributes are indexed by country and further contextualized by the year (2000-2019). Most country-year combinations have <b><i>observations with attributes</b></i> such as poverty, forest area, health expenditure, out-of-pocket expenditure, physician density, tuberculosis incidence, and urban population percentage.
-  </p>
-  <ul>
-    <li><b><i>c_dollar2_poverty</b></i> : Proportion of Population Pushed Below 3 dollar and 65 cents Poverty Line by - Out-of-Pocket Health Care Expenditure</li>
-    <li><b><i>c_forest_area</b></i> : The Percentage of Land Area covered by Forest</li>
-    <li><b><i>c_health_expenditure</b></i> : The Percentage of a Country's GDP that goes towards Health Expenditures</li>
-    <li><b><i>c_out_of_pocket</b></i> : Out-of-Pocket Expenditure per Capita (Current US Dollars)</li>
-    <li><b><i>c_physician</b></i> : Physicians (Per 1000 People)</li>
-    <li><b><i>c_tuberculosis</b></i> : Incidence of Tuberculosis (Per 100,000 People)</li>
-    <li><b><i>c_urban_pop</b></i> : The Percentage of the Total Population living in Urban Areas</li>
-  </ul>
+      <h2>SocioEconomics Factors by Countries</h2>
+        <p>The dataFrame's attributes are indexed by country and further contextualized by the year (2000-2019). Most country-year combinations have <b><i>observations with attributes</b></i> such as poverty, forest area, health expenditure, out-of-pocket expenditure, physician density, tuberculosis incidence, and urban population percentage.
+        </p>
+        <ul>
+          <li><b><i>c_dollar2_poverty</b></i> : Proportion of Population Pushed Below 3 dollar and 65 cents Poverty Line by - Out-of-Pocket Health Care Expenditure</li>
+          <li><b><i>c_forest_area</b></i> : The Percentage of Land Area covered by Forest</li>
+          <li><b><i>c_health_expenditure</b></i> : The Percentage of a Country's GDP that goes towards Health Expenditures</li>
+          <li><b><i>c_out_of_pocket</b></i> : Out-of-Pocket Expenditure per Capita (Current US Dollars)</li>
+          <li><b><i>c_physician</b></i> : Physicians (Per 1000 People)</li>
+          <li><b><i>c_tuberculosis</b></i> : Incidence of Tuberculosis (Per 100,000 People)</li>
+          <li><b><i>c_urban_pop</b></i> : The Percentage of the Total Population living in Urban Areas</li>
+        </ul><br><br>
 
   <label for="searchCountry">Search Country:</label>
   <input type="text" id="searchCountry" placeholder="Type country...">
@@ -226,33 +339,11 @@
       {% endfor %}
     </table>
   </div>
+      </article>
 
-  <script>
-    $(document).ready(function () {
-      $("#searchCountry, #searchYear").on('input', function () {
-        filterTable();
-      });
-
-      function filterTable() {
-        var countryFilter = $("#searchCountry").val().toLowerCase();
-        var yearFilter = $("#searchYear").val().toLowerCase();
-
-        $("table tr.data-row").each(function () {
-          var countryColumn = $(this).find("td:eq(0)").text().toLowerCase();
-          var yearColumn = $(this).find("td:eq(1)").text().toLowerCase();
-
-          if ((countryFilter === "" || countryColumn.includes(countryFilter)) &&
-            (yearFilter === "" || yearColumn.includes(yearFilter))) {
-            $(this).show();
-          } else {
-            $(this).hide();
-          }
-        });
-      }
-    });
-  </script>
-  <br><br>
-  <h1>Global Patterns in Lung Cancer: Gender-Specific Mortality Rates and Implications for Public Health Strategies</h1>
+      <section id="block3" class="module-block">
+        <h2>Global Patterns in Lung Cancer: Gender-Specific Mortality Rates and Implications for Public Health Strategies</h2>					
+        
   <p>The Age-standardized rates (ASR) of mortality due to lung cancer provide a comprehensive global perspective on the impact of lung cancer following diagnosis. Analyzing this data across 42 countries annually unveils nuanced gender-specific patterns in incidence rates. The ASR (female) and ASR (male) illuminate disparities in the burden of lung cancer, shedding light on potential epidemiological, socio-economic, and healthcare factors influencing outcomes. These findings offer crucial insights for public health interventions, resource allocation, and targeted cancer prevention strategies, aiding global efforts to mitigate the impact of lung cancer and enhance overall health outcomes on a worldwide scale.</p> <p style="color:blue">The more blue, the higher mortality is.</p>
   
   <script>
@@ -712,283 +803,11 @@
   <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/mapdata/custom/world-robinson.js"></script>
 
-  <div id="container1"></div>
+  <div id="container1"></div><br><br>
   <div id="container2"></div>
   </main>
-  <svg id="lights-def" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" viewBox="0 0 161 54">
-    <defs>
-      <path id="glow-red" fill="color(display-p3 .9216 .3412 .3412)" d="m137.32 16.43 2.03-1.58a4 4 0 0 1 2.95-.82l1.68.2a4 4 0 0 1 2.66 1.51l1.59 2.04a10 10 0 0 1 1.03 10.7l-5.4 10.59a4 4 0 0 1-7.47-.92l-2.66-11.6a10 10 0 0 1 3.59-10.12Z" />
-      <path id="glow-blue" fill="color(display-p3 .1765 .6118 .8588)" d="m93.23 18.08 1.5-2.1a4 4 0 0 1 2.6-1.61l1.67-.28a4 4 0 0 1 2.98.7l2.1 1.5a10 10 0 0 1 3.99 9.98l-2.2 11.69a4 4 0 0 1-7.42 1.22L92.63 28.8a10 10 0 0 1 .6-10.72Z" />
-      <path id="glow-yellow" fill="color(display-p3 .949 .7882 .298)" d="m56.6 16.63 1.96-1.69a4 4 0 0 1 2.91-.95l1.68.12a4 4 0 0 1 2.74 1.38l1.68 1.96a10 10 0 0 1 1.53 10.63l-4.89 10.84a4 4 0 0 1-7.5-.56L53.5 26.91a10 10 0 0 1 3.1-10.28Z" />
-      <path id="glow-green" fill="color(display-p3 .1529 .6824 .3765)" d="m13.12 18.14 1.49-2.1a4 4 0 0 1 2.58-1.64l1.67-.29a4 4 0 0 1 2.98.68l2.11 1.48a10 10 0 0 1 4.08 9.94l-2.1 11.7a4 4 0 0 1-7.42 1.29l-5.9-10.33a10 10 0 0 1 .5-10.73Z" />
-      <path id="lit-red" fill="#fff" d="m137.32 16.43 2.03-1.58a4 4 0 0 1 2.95-.82l1.68.2a4 4 0 0 1 2.66 1.51l1.59 2.04a10 10 0 0 1 1.03 10.7l-5.4 10.59a4 4 0 0 1-7.47-.92l-2.66-11.6a10 10 0 0 1 3.59-10.12Z" />
-      <path id="lit-blue" fill="#fff" d="m93.23 18.08 1.5-2.1a4 4 0 0 1 2.6-1.61l1.67-.28a4 4 0 0 1 2.98.7l2.1 1.5a10 10 0 0 1 3.99 9.98l-2.2 11.69a4 4 0 0 1-7.42 1.22L92.63 28.8a10 10 0 0 1 .6-10.72Z" />
-      <path id="lit-yellow" fill="#fff" d="m56.6 16.63 1.96-1.69a4 4 0 0 1 2.91-.95l1.68.12a4 4 0 0 1 2.74 1.38l1.68 1.96a10 10 0 0 1 1.53 10.63l-4.89 10.84a4 4 0 0 1-7.5-.56L53.5 26.91a10 10 0 0 1 3.1-10.28Z" />
-      <path id="lit-green" fill="#fff" d="m13.12 18.14 1.49-2.1a4 4 0 0 1 2.58-1.64l1.67-.29a4 4 0 0 1 2.98.68l2.11 1.48a10 10 0 0 1 4.08 9.94l-2.1 11.7a4 4 0 0 1-7.42 1.29l-5.9-10.33a10 10 0 0 1 .5-10.73Z" />
-      <g id="holiday-lights" clip-path="url(#a)">
-        <path id="cord" fill="color(display-p3 .0471 .1961 .1137)" d="M0 4h6.31a6 6 0 0 1 3.13.88l6.6 4.04c.6.36 1.34.4 1.96.08l6.13-3.68a6 6 0 0 1 2.97-.85l21.7-.45a6 6 0 0 1 2.31.42l9.77 3.82a5.3 5.3 0 0 0 3.88 0l7.09-2.8a6 6 0 0 1 2.39-.42l13.33.42a6 6 0 0 1 2.69.73l3.82 2.08a6 6 0 0 0 3.3.72l.56-.04a6 6 0 0 0 1.22-.21l10.61-3.03a6 6 0 0 1 1.49-.23l21.77-.6a6 6 0 0 1 2.8.61l6.84 3.35a3.47 3.47 0 0 0 3.66-.39l4.04-3.17a6 6 0 0 1 3.7-1.28H161v2h-6.3a6 6 0 0 0-3.88 1.42l-2.81 2.38a6 6 0 0 1-4.62 1.37l-.32-.04a6 6 0 0 1-2.02-.62l-5.67-2.95a6 6 0 0 0-2.93-.67l-20.7.59c-.5.01-1 .09-1.48.23l-10.55 3.03a6 6 0 0 1-1.21.21l-.7.06a6 6 0 0 1-2.98-.55l-5.22-2.44a6 6 0 0 0-2.34-.56l-12.53-.42a6 6 0 0 0-2.4.42l-7.04 2.78a6 6 0 0 1-2.7.4l-.73-.07a6 6 0 0 1-1.69-.39l-9.56-3.74a6 6 0 0 0-2.32-.41l-20.7.44a6 6 0 0 0-2.97.85l-5.67 3.4a3.63 3.63 0 0 1-3.76-.02L8.94 6.89A6 6 0 0 0 5.81 6H0V4Z" />
-        <g class="bulb-glow red" filter="url(#b)" style="mix-blend-mode:plus-lighter">
-          <use xlink:href="#glow-red" />
-        </g>
-        <g id="plug-red">
-          <path fill="color(display-p3 .0486 .196 .1119)" d="M140 10.89c.02-.11.06-.22.16-.27.25-.12 1.03-.26 3.4.04 2.38.29 3.1.61 3.32.8.09.06.1.18.1.29l-.05 4.36s-.57-1.58-3.8-1.98c-3.22-.4-4.14 1-4.14 1l1-4.24Z" />
-          <g filter="url(#d)" style="mix-blend-mode:color-dodge">
-            <path fill="color(display-p3 .0578 .3504 .1908)" d="m139.85 14.23.9-3.16 3.47.42-2.6.69-1.77 2.05Z" />
-          </g>
-        </g>
-        <g id="bulb-red">
-          <path fill="color(display-p3 .9216 .3412 .3412)" stroke="color(display-p3 .8784 .8784 .8784)" stroke-width=".25" d="m137.32 16.43 2.03-1.58a4 4 0 0 1 2.95-.82l1.68.2a4 4 0 0 1 2.66 1.51l1.59 2.04a10 10 0 0 1 1.03 10.7l-5.4 10.59a4 4 0 0 1-7.47-.92l-2.66-11.6a10 10 0 0 1 3.59-10.12Z" />
-          <g filter="url(#e)" style="mix-blend-mode:overlay">
-            <path fill="#fff" d="M135.92 19.54c1.98-2.78 3.37-2.78 4.4-2.98l-1.37 1.46a10 10 0 0 0-2.7 6.43l-.16 3.93c-.49-2.16-2.15-6.06-.17-8.84Z" />
-          </g>
-          <g filter="url(#f)" opacity=".6" style="mix-blend-mode:plus-lighter">
-            <path fill="#fff" d="m140.59 26.66 2.59-8.75 3.35 3.44.5 4.1-6.2 11.57-.24-10.36Z" />
-          </g>
-        </g>
-        <g class="bulb-glow blue" filter="url(#g)" style="mix-blend-mode:plus-lighter">
-          <use xlink:href="#glow-blue" />
-        </g>
-        <g id="plug-blue">
-          <path fill="color(display-p3 .0486 .196 .1119)" d="M94.24 12c-.01-.1 0-.22.08-.3.2-.18.92-.54 3.28-.92 2.36-.4 3.15-.28 3.4-.17.1.04.15.15.18.25l1.18 4.2s-.99-1.36-4.2-.83c-3.2.53-3.7 2.13-3.7 2.13L94.24 12Z" />
-          <g filter="url(#i)" style="mix-blend-mode:color-dodge">
-            <path fill="color(display-p3 .0578 .3504 .1908)" d="m95.04 15.25-.03-3.29 3.45-.56-2.3 1.39-1.12 2.46Z" />
-          </g>
-        </g>
-        <g id="bulb-blue">
-          <path fill="color(display-p3 .1765 .6118 .8588)" stroke="color(display-p3 .8784 .8784 .8784)" stroke-width=".25" d="m93.23 18.08 1.5-2.1a4 4 0 0 1 2.6-1.61l1.67-.28a4 4 0 0 1 2.98.7l2.1 1.5a10 10 0 0 1 3.99 9.98l-2.2 11.69a4 4 0 0 1-7.42 1.22L92.63 28.8a10 10 0 0 1 .6-10.72Z" />
-          <g filter="url(#j)" style="mix-blend-mode:overlay">
-            <path fill="#fff" d="M92.76 21.45c1.12-3.22 2.45-3.61 3.39-4.1l-.9 1.79a10 10 0 0 0-.79 6.93l.95 3.81c-1.07-1.93-3.76-5.2-2.65-8.43Z" />
-          </g>
-          <g filter="url(#k)" opacity=".6" style="mix-blend-mode:plus-lighter">
-            <path fill="#fff" d="m99.24 26.97.03-9.12 4.18 2.35 1.65 3.8-2.7 12.86-3.15-9.88Z" />
-          </g>
-        </g>
-        <g class="bulb-glow yellow" filter="url(#l)" style="mix-blend-mode:plus-lighter">
-          <use xlink:href="#glow-yellow" />
-        </g>
-        <g id="plug-yellow">
-          <path fill="color(display-p3 .0486 .196 .1119)" d="M59.02 10.96c.02-.11.05-.22.15-.27.25-.13 1.02-.31 3.4-.13 2.4.18 3.13.47 3.36.63.09.07.1.19.1.3l.16 4.36s-.64-1.56-3.88-1.8c-3.24-.24-4.1 1.2-4.1 1.2l.8-4.3Z" />
-          <g filter="url(#n)" style="mix-blend-mode:color-dodge">
-            <path fill="color(display-p3 .0578 .3504 .1908)" d="m59.03 14.3.75-3.2 3.49.26-2.57.81-1.67 2.13Z" />
-          </g>
-        </g>
-        <g id="bulb-yellow">
-          <path fill="color(display-p3 .949 .7882 .298)" stroke="color(display-p3 .8784 .8784 .8784)" stroke-width=".25" d="m56.6 16.63 1.96-1.69a4 4 0 0 1 2.91-.95l1.68.12a4 4 0 0 1 2.74 1.38l1.68 1.96a10 10 0 0 1 1.53 10.63l-4.89 10.84a4 4 0 0 1-7.5-.56L53.5 26.91a10 10 0 0 1 3.1-10.28Z" />
-          <g filter="url(#o)" style="mix-blend-mode:overlay">
-            <path fill="#fff" d="M55.36 19.8c1.85-2.88 3.23-2.94 4.25-3.2l-1.3 1.53a10 10 0 0 0-2.38 6.55l.02 3.93c-.59-2.13-2.43-5.95-.59-8.82Z" />
-          </g>
-          <g filter="url(#p)" opacity=".6" style="mix-blend-mode:plus-lighter">
-            <path fill="#fff" d="m60.36 26.69 2.17-8.86 3.51 3.27.7 4.06-5.65 11.86-.73-10.33Z" />
-          </g>
-        </g>
-        <g class="bulb-glow green" filter="url(#q)" style="mix-blend-mode:plus-lighter">
-          <use xlink:href="#glow-green" />
-        </g>
-        <g id="plug-green">
-          <path fill="color(display-p3 .0486 .196 .1119)" d="M14.08 12.06c-.01-.11 0-.23.07-.3.21-.19.92-.55 3.28-.95 2.36-.41 3.14-.3 3.4-.2.1.04.15.15.18.25l1.21 4.2s-1-1.36-4.2-.8c-3.2.55-3.68 2.15-3.68 2.15l-.26-4.35Z" />
-          <g filter="url(#s)" style="mix-blend-mode:color-dodge">
-            <path fill="color(display-p3 .0578 .3504 .1908)" d="m14.9 15.3-.05-3.29 3.45-.6-2.3 1.42-1.1 2.47Z" />
-          </g>
-        </g>
-        <g id="bulb-green">
-          <path fill="color(display-p3 .1529 .6824 .3765)" stroke="color(display-p3 .8784 .8784 .8784)" stroke-width=".25" d="m13.12 18.14 1.49-2.1a4 4 0 0 1 2.58-1.64l1.67-.29a4 4 0 0 1 2.98.68l2.11 1.48a10 10 0 0 1 4.08 9.94l-2.1 11.7a4 4 0 0 1-7.42 1.29l-5.9-10.33a10 10 0 0 1 .5-10.73Z" />
-          <g filter="url(#t)" style="mix-blend-mode:overlay">
-            <path fill="#fff" d="M12.68 21.52c1.1-3.23 2.42-3.63 3.35-4.13l-.9 1.8a10 10 0 0 0-.71 6.93l.98 3.8c-1.1-1.92-3.8-5.17-2.72-8.4Z" />
-          </g>
-          <g filter="url(#u)" opacity=".6" style="mix-blend-mode:plus-lighter">
-            <path fill="#fff" d="m19.2 26.99-.04-9.12 4.2 2.31 1.67 3.78-2.6 12.87L19.2 27Z" />
-          </g>
-        </g>
-        <g class="lit red" style="mix-blend-mode:overlay">
-          <g filter="url(#v)">
-            <use xlink:href="#glow-red" />
-          </g>
-          <g filter="url(#w)">
-            <use xlink:href="#lit-red" />
-          </g>
-          <g filter="url(#y)">
-            <use xlink:href="#lit-red" />
-          </g>
-        </g>
-        <g class="lit blue" style="mix-blend-mode:overlay">
-          <g filter="url(#z)">
-            <use xlink:href="#glow-blue" />
-          </g>
-          <g filter="url(#A)">
-            <use xlink:href="#lit-blue" />
-          </g>
-          <g filter="url(#C)">
-            <use xlink:href="#lit-blue" />
-          </g>
-        </g>
-        <g class="lit yellow" style="mix-blend-mode:overlay">
-          <g filter="url(#D)">
-            <use xlink:href="#glow-yellow" />
-          </g>
-          <g filter="url(#E)">
-            <use xlink:href="#lit-yellow" />
-          </g>
-          <g filter="url(#G)">
-            <use xlink:href="#lit-yellow" />
-          </g>
-        </g>
-        <g class="lit green" style="mix-blend-mode:overlay">
-          <g filter="url(#H)">
-            <use xlink:href="#glow-green" />
-          </g>
-          <g filter="url(#I)">
-            <use xlink:href="#lit-green" />
-          </g>
-          <g filter="url(#K)">
-            <use xlink:href="#lit-green" />
-          </g>
-        </g>
-      </g>
-      <filter id="b" width="40.88" height="51.25" x="121.47" y="2" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation="6" />
-      </filter>
-      <filter id="d" width="6.37" height="5.16" x="138.85" y="10.07" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation=".5" />
-      </filter>
-      <filter id="e" width="8.34" height="14.82" x="133.48" y="15.05" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation=".75" />
-      </filter>
-      <filter id="f" width="14.45" height="27.11" x="136.59" y="13.91" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation="2" />
-      </filter>
-      <filter id="g" width="40.89" height="51.18" x="79.35" y="2.04" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation="6" />
-      </filter>
-      <filter id="i" width="5.45" height="5.85" x="94.01" y="10.4" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation=".5" />
-      </filter>
-      <filter id="j" width="6.65" height="15.53" x="91" y="15.85" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation=".75" />
-      </filter>
-      <filter id="k" width="13.84" height="27" x="95.24" y="13.85" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation="2" />
-      </filter>
-      <filter id="l" width="40.86" height="51.3" x="41.13" y="1.97" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation="6" />
-      </filter>
-      <filter id="n" width="6.23" height="5.2" x="58.03" y="10.1" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation=".5" />
-      </filter>
-      <filter id="o" width="8.05" height="15.01" x="53.06" y="15.1" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation=".75" />
-      </filter>
-      <filter id="p" width="14.38" height="27.2" x="56.36" y="13.83" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation="2" />
-      </filter>
-      <filter id="q" width="40.9" height="51.16" x="-.71" y="2.05" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation="6" />
-      </filter>
-      <filter id="s" width="5.45" height="5.88" x="13.85" y="10.42" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation=".5" />
-      </filter>
-      <filter id="t" width="6.6" height="15.54" x="10.93" y="15.89" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation=".75" />
-      </filter>
-      <filter id="u" width="13.87" height="26.97" x="15.15" y="13.87" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation="2" />
-      </filter>
-      <filter id="v" width="40.88" height="51.25" x="121.47" y="2" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation="6" />
-      </filter>
-      <filter id="w" width="30.88" height="41.25" x="126.47" y="7" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation="3.5" />
-      </filter>
-      <filter id="y" width="20.88" height="31.25" x="131.47" y="12" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation="1" />
-      </filter>
-      <filter id="z" width="40.89" height="51.18" x="79.35" y="2.04" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation="6" />
-      </filter>
-      <filter id="A" width="30.89" height="41.18" x="84.35" y="7.04" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation="3.5" />
-      </filter>
-      <filter id="C" width="20.89" height="31.18" x="89.35" y="12.04" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation="1" />
-      </filter>
-      <filter id="D" width="40.86" height="51.3" x="41.13" y="1.97" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation="6" />
-      </filter>
-      <filter id="E" width="30.86" height="41.3" x="46.13" y="6.97" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation="3.5" />
-      </filter>
-      <filter id="G" width="20.86" height="31.3" x="51.13" y="11.97" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation="1" />
-      </filter>
-      <filter id="H" width="40.9" height="51.16" x="-.71" y="2.05" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation="6" />
-      </filter>
-      <filter id="I" width="30.9" height="41.16" x="4.29" y="7.05" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation="3.5" />
-      </filter>
-      <filter id="K" width="20.9" height="31.16" x="9.29" y="12.05" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-        <feGaussianBlur result="effect1_foregroundBlur_1_2" stdDeviation="1" />
-      </filter>
-      <clipPath id="a">
-        <path fill="#fff" d="M0 0h161v54H0z" />
-      </clipPath>
-    </defs>
-  </svg>
+      </section>
+        
 </body>
   
 

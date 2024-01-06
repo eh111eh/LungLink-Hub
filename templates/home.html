@@ -1,77 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" >
 <head>
-  <title>LungLink Hub</title>
-  <link rel="icon" type="image/x-icon" href="mainpageicon.ico">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
-  <style type="text/css">
-    * {
-      font-family: Times New Roman;
-      font-style: normal;
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-    }
-
-    .header {
-      padding: 60px;
-      text-align: center;
-      background: #87CEEB;
-      color: black;
-    }
-
-    .header h1 {
-      font-family: Times New Roman;
-      font-color: white;
-      font-size: 35px;
-    }
-
-    .main {
-      float: center;
-      text-align: center;
-      background-color: white;
-      padding: 5%;
-    }
-
-    #loader {
-      width: 80px;
-      height: 40px;
-      position: relative;
-      top: 50%;
-      left: 50%;
-      margin: -20px -40px;
-      z-index: 1000;
-    }
-
-  </style>
-
-  <script src="myscripts.js"></script>
+  <title>LungLink Hub:Breathe Smart Together</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Mega&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="/static/style.css">
 
 </head>
-
 <body>
-  {% include 'nav.html' %}
 
-  <div class="header">
-    <h1>LungLink Hub: Breathe Smart Together</h1>
-    <h5>Global Correlations of Lung Cancer Survival Rates with Societal Factors</h5>
+<div id='wrap'>
+  <h1 data-splitting='words'>LungLink Hub: Breathe Smart Together</h1>
+  <p class='subhead'>Global Correlations of Lung Cancer Survival Rates with Societal Factors</p>
+  <div class='panel'>
+    <h2 class='dark' data-splitting='words'>Check Out Your Area!</h2>
+    <div class='thumb'>
+      <p>Try simulating any hypothetical scenarios you're interested in!</p>
+      <div class='inner'>
+        <img class='invert' loading='lazy' src="{{ url_for('static', filename='img/magnifier.png') }}">
+      </div>
+    </div>
+  </div>
+  <div class='panel'>
+    <h2 data-splitting='words'>ML</h2>
+    <div class='thumb'>
+      <p>How do we understand the relationship between lung cancer survival dynamics and socioeconomic factors?</p>
+      <div class='inner'>
+        <img class='light' loading='lazy' src="{{ url_for('static', filename='img/machine.png') }}">
+      </div>
+    </div>
+  </div>
+  <div class='panel'>
+    <h2 data-splitting='words'>Statistics</h2>
+    <div class='thumb'>
+      <p>Interactive charts, graphs, and maps to dynamically display the projected outcomes</p>
+      <div class='inner'>
+        <img loading='lazy' src="{{ url_for('static', filename='img/bar_chart.png') }}">
+      </div>
+    </div>
+  </div>
+  <div class='panel'>
+    <h2 data-splitting='words'>Community</h2>
+    <div class='thumb'>
+      <p>Playground to share experiences, ask questions, and support each other</p>
+      <div class='inner'>
+        <img loading='lazy' src="{{ url_for('static', filename='img/phone.png') }}">
+      </div>
+    </div>
+  </div>
+    </div>
   </div>
 
-  <div class="main">
-    <h2>Check Out Your Area!</h2>
+<div id='frame'>
+  <div id='close'>
+    <div></div>
+    <strong class='circle' data-splitting='chars'>GO•BACK•</strong>
   </div>
-
-  <br><br>
-
-  <div class="footer">
-    {% include 'feedback.html' %}
+  <div class='frame-wrap'>
+    <div class='frame-container'>
+      <iframe id='pen' loading='lazy' src='' style='border:0'></iframe>
+      <a id='penlink' target='_blank'><strong>View the Code <span>&rarr;</span></strong></a>
+    </div>
   </div>
+</div>
+<div id='cursor'>
+  <strong class='circle' data-splitting='chars'>SEE•MORE•</strong>
+</div>
+<div id='loader'>
+  <div class='wrap'>
+    <span>L</span>
+    <span>O</span>
+    <span>A</span>
+    <span>D</span>
+    <span>I</span>
+    <span>N</span>
+    <span>G</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+  </div>
+</div>
+<div id='social'>
+  <a href="https://github.com/eh111eh/LungLink-Hub" aria-label="Homepage" class="footer-octicon" title="GitHub">
+      <svg aria-hidden="true" class="octicon octicon-mark-github" height="24" version="1.1" viewBox="0 0 16 16" width="24"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+</svg>
+</a>
+</div>
+<!-- partial -->
+  <script src='https://unpkg.com/splitting@1.0.5/dist/splitting.min.js'></script>
+<script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/ScrollTrigger.min.js'></script><script  src="/static/script.js"></script>
+
 </body>
-
 </html>
