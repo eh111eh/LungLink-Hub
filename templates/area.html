@@ -1,0 +1,2533 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Check Out Your Area!</title>
+</head>
+
+<style>
+  @charset "UTF-8";
+  @font-face {
+    font-family: "Press Start 2P";
+    font-style: normal;
+    font-weight: 400;
+    src: url("https://assets.codepen.io/383755/press-start.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Plumbers";
+    font-style: normal;
+    font-weight: 400;
+    src: url("https://assets.codepen.io/383755/SuperPlumberBrothers.woff2") format("woff2");
+  }
+  body {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='50px' height='50px' viewBox='0 0 50 50' version='1.1'%3E%3Cdefs%3E%3Cstyle%3Epath%7Bstroke-width:0.5 !important; stroke: %23fff !important;%7D.mouse%7Banimation:scroll 1s ease-in-out infinite;%7D@keyframes scroll%7Bto%7Btransform:translateY(5px)%7D%7D%3C/style%3E%3C/defs%3E%3Cpath style=' stroke:none;fill-rule:nonzero;fill:rgb(255,255,255);fill-opacity:1;' d='M 27.640625 31.839844 L 25 34.480469 L 22.359375 31.839844 C 22.039062 31.519531 21.558594 31.519531 21.238281 31.839844 C 20.917969 32.160156 20.917969 32.640625 21.238281 32.960938 L 24.441406 36.160156 C 24.601562 36.320312 24.800781 36.398438 25 36.398438 C 25.199219 36.398438 25.398438 36.320312 25.558594 36.160156 L 28.761719 32.960938 C 29.078125 32.640625 29.078125 32.160156 28.761719 31.839844 C 28.441406 31.519531 27.960938 31.519531 27.640625 31.839844 Z M 27.640625 31.839844 '/%3E%3Cpath style=' stroke:none;fill-rule:nonzero;fill:rgb(255,255,255);fill-opacity:1;' d='M 28.761719 27.441406 C 28.441406 27.121094 27.960938 27.121094 27.640625 27.441406 L 25 30.078125 L 22.359375 27.441406 C 22.039062 27.121094 21.558594 27.121094 21.238281 27.441406 C 20.917969 27.761719 20.917969 28.238281 21.238281 28.558594 L 24.441406 31.761719 C 24.601562 31.921875 24.800781 32 25 32 C 25.199219 32 25.398438 31.921875 25.558594 31.761719 L 28.761719 28.558594 C 29.078125 28.238281 29.078125 27.761719 28.761719 27.441406 Z M 28.761719 27.441406 '/%3E%3Cpath style=' stroke:none;fill-rule:nonzero;fill:rgb(255,255,255);fill-opacity:1;' d='M 32.199219 18 L 32.199219 10.800781 C 32.199219 6.839844 28.960938 3.601562 25 3.601562 C 21.039062 3.601562 17.800781 6.839844 17.800781 10.800781 L 17.800781 18 C 17.800781 21.960938 21.039062 25.199219 25 25.199219 C 28.960938 25.199219 32.199219 21.960938 32.199219 18 Z M 25 23.601562 C 21.921875 23.601562 19.398438 21.078125 19.398438 18 L 19.398438 10.800781 C 19.398438 7.71875 21.921875 5.199219 25 5.199219 C 28.078125 5.199219 30.601562 7.71875 30.601562 10.800781 L 30.601562 18 C 30.601562 21.078125 28.078125 23.601562 25 23.601562 Z M 25 23.601562 '/%3E%3Cpath class='mouse' style=' stroke:none;fill-rule:nonzero;fill:rgb(255,255,255);fill-opacity:1;' d='M 25 8 C 24.558594 8 24.199219 8.359375 24.199219 8.800781 L 24.199219 11.199219 C 24.199219 11.640625 24.558594 12 25 12 C 25.441406 12 25.800781 11.640625 25.800781 11.199219 L 25.800781 8.800781 C 25.800781 8.359375 25.441406 8 25 8 Z M 25 8 '/%3E%3C/svg%3E%0A"), ns-resize;
+    image-rendering: pixelated;
+    --orange: #e45f12;
+    --yellow: #ffddc6;
+    --boost: 0px;
+    --speed: 0.00001;
+    --jump: -225px;
+    --flip: 1;
+    --animation: stand;
+    --progress: 0;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    display: block;
+    height: 2300vh;
+    overflow-x: hidden;
+    font-family: "Press Start 2P";
+  }
+  body:after {
+    content: "SCROLL  ";
+    position: fixed;
+    color: #000;
+    width: 12px;
+    font-size: 12px;
+    height: 100px;
+    display: flex;
+    left: 45px;
+    top: calc(50vh - 75px);
+    z-index: 7;
+    flex-wrap: wrap;
+    word-break: break-all;
+    line-height: 1.5;
+    justify-content: center;
+    align-items: flex-start;
+    color: var(--yellow);
+    animation: scrollme 2s linear infinite;
+    transform: translateX(clamp(-100px, calc(50px - (var(--progress) * 100px)), 0px));
+  }
+  @keyframes scrollme {
+    33% {
+      content: "SCROLL  ▼";
+    }
+    66% {
+      content: "SCROLL  ▼▼";
+    }
+    100% {
+      content: "SCROLL  ▼▼▼";
+    }
+  }
+  body:before {
+    content: "";
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    background: url("https://assets.codepen.io/383755/curtain1.png") 0px 100%/35px auto repeat-x, url("https://assets.codepen.io/383755/curtain2.png") 0px calc(100% - 10px)/35px auto;
+    transition: transform 1.5s ease-in-out 1s;
+    transform: translateY(0);
+  }
+  body.jump #mario {
+    animation: none;
+    background: url("https://assets.codepen.io/383755/smb1_mario_sheet.gif") -575px -200px/800px auto no-repeat;
+    transform: scaleX(var(--flip)) translateZ(0px) translateY(calc((var(--progress) * var(--jump) + var(--boost))));
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin0 .timeline li:nth-of-type(2) > span span.word,
+  body.coin0 .timeline li:nth-of-type(2) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin0 .timeline li:nth-of-type(1):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin0 .timeline li:nth-of-type(1):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin0 .timeline li:nth-of-type(1):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin0 .timeline li:nth-of-type(1):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin0 .timeline li:nth-of-type(1):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin1 .timeline li:nth-of-type(3) > span span.word,
+  body.coin1 .timeline li:nth-of-type(3) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin1 .timeline li:nth-of-type(2):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin1 .timeline li:nth-of-type(2):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin1 .timeline li:nth-of-type(2):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin1 .timeline li:nth-of-type(2):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin1 .timeline li:nth-of-type(2):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin2 .timeline li:nth-of-type(4) > span span.word,
+  body.coin2 .timeline li:nth-of-type(4) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin2 .timeline li:nth-of-type(3):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin2 .timeline li:nth-of-type(3):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin2 .timeline li:nth-of-type(3):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin2 .timeline li:nth-of-type(3):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin2 .timeline li:nth-of-type(3):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin3 .timeline li:nth-of-type(5) > span span.word,
+  body.coin3 .timeline li:nth-of-type(5) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin3 .timeline li:nth-of-type(4):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin3 .timeline li:nth-of-type(4):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin3 .timeline li:nth-of-type(4):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin3 .timeline li:nth-of-type(4):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin3 .timeline li:nth-of-type(4):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin4 .timeline li:nth-of-type(6) > span span.word,
+  body.coin4 .timeline li:nth-of-type(6) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin4 .timeline li:nth-of-type(5):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin4 .timeline li:nth-of-type(5):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin4 .timeline li:nth-of-type(5):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin4 .timeline li:nth-of-type(5):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin4 .timeline li:nth-of-type(5):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin5 .timeline li:nth-of-type(7) > span span.word,
+  body.coin5 .timeline li:nth-of-type(7) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin5 .timeline li:nth-of-type(6):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin5 .timeline li:nth-of-type(6):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin5 .timeline li:nth-of-type(6):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin5 .timeline li:nth-of-type(6):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin5 .timeline li:nth-of-type(6):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin6 .timeline li:nth-of-type(8) > span span.word,
+  body.coin6 .timeline li:nth-of-type(8) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin6 .timeline li:nth-of-type(7):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin6 .timeline li:nth-of-type(7):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin6 .timeline li:nth-of-type(7):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin6 .timeline li:nth-of-type(7):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin6 .timeline li:nth-of-type(7):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin7 .timeline li:nth-of-type(9) > span span.word,
+  body.coin7 .timeline li:nth-of-type(9) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin7 .timeline li:nth-of-type(8):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin7 .timeline li:nth-of-type(8):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin7 .timeline li:nth-of-type(8):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin7 .timeline li:nth-of-type(8):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin7 .timeline li:nth-of-type(8):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin8 .timeline li:nth-of-type(10) > span span.word,
+  body.coin8 .timeline li:nth-of-type(10) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin8 .timeline li:nth-of-type(9):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin8 .timeline li:nth-of-type(9):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin8 .timeline li:nth-of-type(9):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin8 .timeline li:nth-of-type(9):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin8 .timeline li:nth-of-type(9):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin9 .timeline li:nth-of-type(11) > span span.word,
+  body.coin9 .timeline li:nth-of-type(11) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin9 .timeline li:nth-of-type(10):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin9 .timeline li:nth-of-type(10):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin9 .timeline li:nth-of-type(10):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin9 .timeline li:nth-of-type(10):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin9 .timeline li:nth-of-type(10):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin10 .timeline li:nth-of-type(12) > span span.word,
+  body.coin10 .timeline li:nth-of-type(12) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin10 .timeline li:nth-of-type(11):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin10 .timeline li:nth-of-type(11):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin10 .timeline li:nth-of-type(11):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin10 .timeline li:nth-of-type(11):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin10 .timeline li:nth-of-type(11):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin11 .timeline li:nth-of-type(13) > span span.word,
+  body.coin11 .timeline li:nth-of-type(13) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin11 .timeline li:nth-of-type(12):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin11 .timeline li:nth-of-type(12):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin11 .timeline li:nth-of-type(12):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin11 .timeline li:nth-of-type(12):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin11 .timeline li:nth-of-type(12):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin12 .timeline li:nth-of-type(14) > span span.word,
+  body.coin12 .timeline li:nth-of-type(14) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin12 .timeline li:nth-of-type(13):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin12 .timeline li:nth-of-type(13):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin12 .timeline li:nth-of-type(13):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin12 .timeline li:nth-of-type(13):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin12 .timeline li:nth-of-type(13):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin13 .timeline li:nth-of-type(15) > span span.word,
+  body.coin13 .timeline li:nth-of-type(15) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin13 .timeline li:nth-of-type(14):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin13 .timeline li:nth-of-type(14):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin13 .timeline li:nth-of-type(14):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin13 .timeline li:nth-of-type(14):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin13 .timeline li:nth-of-type(14):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin14 .timeline li:nth-of-type(16) > span span.word,
+  body.coin14 .timeline li:nth-of-type(16) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin14 .timeline li:nth-of-type(15):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin14 .timeline li:nth-of-type(15):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin14 .timeline li:nth-of-type(15):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin14 .timeline li:nth-of-type(15):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin14 .timeline li:nth-of-type(15):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin15 .timeline li:nth-of-type(17) > span span.word,
+  body.coin15 .timeline li:nth-of-type(17) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin15 .timeline li:nth-of-type(16):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin15 .timeline li:nth-of-type(16):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin15 .timeline li:nth-of-type(16):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin15 .timeline li:nth-of-type(16):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin15 .timeline li:nth-of-type(16):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin16 .timeline li:nth-of-type(18) > span span.word,
+  body.coin16 .timeline li:nth-of-type(18) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin16 .timeline li:nth-of-type(17):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin16 .timeline li:nth-of-type(17):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin16 .timeline li:nth-of-type(17):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin16 .timeline li:nth-of-type(17):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin16 .timeline li:nth-of-type(17):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin17 .timeline li:nth-of-type(19) > span span.word,
+  body.coin17 .timeline li:nth-of-type(19) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin17 .timeline li:nth-of-type(18):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin17 .timeline li:nth-of-type(18):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin17 .timeline li:nth-of-type(18):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin17 .timeline li:nth-of-type(18):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin17 .timeline li:nth-of-type(18):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin18 .timeline li:nth-of-type(20) > span span.word,
+  body.coin18 .timeline li:nth-of-type(20) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin18 .timeline li:nth-of-type(19):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin18 .timeline li:nth-of-type(19):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin18 .timeline li:nth-of-type(19):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin18 .timeline li:nth-of-type(19):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin18 .timeline li:nth-of-type(19):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin19 .timeline li:nth-of-type(21) > span span.word,
+  body.coin19 .timeline li:nth-of-type(21) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin19 .timeline li:nth-of-type(20):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin19 .timeline li:nth-of-type(20):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin19 .timeline li:nth-of-type(20):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin19 .timeline li:nth-of-type(20):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin19 .timeline li:nth-of-type(20):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin20 .timeline li:nth-of-type(22) > span span.word,
+  body.coin20 .timeline li:nth-of-type(22) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin20 .timeline li:nth-of-type(21):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin20 .timeline li:nth-of-type(21):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin20 .timeline li:nth-of-type(21):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin20 .timeline li:nth-of-type(21):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin20 .timeline li:nth-of-type(21):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin21 .timeline li:nth-of-type(23) > span span.word,
+  body.coin21 .timeline li:nth-of-type(23) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin21 .timeline li:nth-of-type(22):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin21 .timeline li:nth-of-type(22):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin21 .timeline li:nth-of-type(22):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin21 .timeline li:nth-of-type(22):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin21 .timeline li:nth-of-type(22):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body.loaded .intro {
+    transform: translateY(0px);
+  }
+  body.loaded:before {
+    transform: translateY(-100%);
+  }
+  body.loaded .timeline li:first-of-type > span span.word,
+  body.loaded .timeline li:first-of-type time span.word {
+    transition-delay: calc( 									(var(--word-index) * 0.02s) + var(--modifier) + 2s 								);
+    transform: translateY(0);
+  }
+  body.coin22 .timeline li:nth-of-type(24) > span span.word,
+  body.coin22 .timeline li:nth-of-type(24) time span.word {
+    transform: translateY(0px);
+  }
+  body.coin22 .timeline li:nth-of-type(23):before {
+    background: linear-gradient(to bottom, #8c1000, #8c1000) 50% 50%/30px 45px no-repeat, url(https://assets.codepen.io/383755/items.png) -206px 0px/900px auto no-repeat;
+    animation: bounce 0.05s ease-in-out 2 alternate;
+    --height: -10px;
+  }
+  @keyframes bounce {
+    to {
+      transform: translateY(var(--height));
+    }
+  }
+  body.coin22 .timeline li:nth-of-type(23):after {
+    animation: coin 0.5s steps(3, end) infinite 0.15s, bounce 0.25s ease-in-out 2 alternate;
+    transform: translateY(-10px);
+    --height: -125px;
+  }
+  @keyframes coin {
+    50% {
+      background-position: -730px -300px;
+    }
+  }
+  body.coin22 .timeline li:nth-of-type(23):nth-of-type(7):after {
+    animation: none;
+    transform: none;
+  }
+  body.coin22 .timeline li:nth-of-type(23):nth-last-of-type(2):before {
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    animation: bowser 0.5s steps(3, end) infinite;
+  }
+  body.coin22 .timeline li:nth-of-type(23):nth-of-type(3n):after {
+    animation: flower 0.5s steps(2, end) infinite 0.15s, grow 1s ease-in-out 1 forwards;
+  }
+  @keyframes grow {
+    to {
+      transform: translate(-1.5px, -60.5px);
+    }
+  }
+  @keyframes flower {
+    to {
+      background-position: -207.5px -200px;
+    }
+  }
+  body span.marker {
+    position: absolute;
+    height: 33.33vh;
+    width: 100vw;
+    top: 33.33vh;
+    pointer-events: none;
+  }
+  body span.marker:nth-of-type(1) {
+    top: calc(33.33vh + 0vh);
+  }
+  body span.marker:nth-of-type(2) {
+    top: calc(33.33vh + 100vh);
+  }
+  body span.marker:nth-of-type(3) {
+    top: calc(33.33vh + 200vh);
+  }
+  body span.marker:nth-of-type(4) {
+    top: calc(33.33vh + 300vh);
+  }
+  body span.marker:nth-of-type(5) {
+    top: calc(33.33vh + 400vh);
+  }
+  body span.marker:nth-of-type(6) {
+    top: calc(33.33vh + 500vh);
+  }
+  body span.marker:nth-of-type(7) {
+    top: calc(33.33vh + 600vh);
+  }
+  body span.marker:nth-of-type(8) {
+    top: calc(33.33vh + 700vh);
+  }
+  body span.marker:nth-of-type(9) {
+    top: calc(33.33vh + 800vh);
+  }
+  body span.marker:nth-of-type(10) {
+    top: calc(33.33vh + 900vh);
+  }
+  body span.marker:nth-of-type(11) {
+    top: calc(33.33vh + 1000vh);
+  }
+  body span.marker:nth-of-type(12) {
+    top: calc(33.33vh + 1100vh);
+  }
+  body span.marker:nth-of-type(13) {
+    top: calc(33.33vh + 1200vh);
+  }
+  body span.marker:nth-of-type(14) {
+    top: calc(33.33vh + 1300vh);
+  }
+  body span.marker:nth-of-type(15) {
+    top: calc(33.33vh + 1400vh);
+  }
+  body span.marker:nth-of-type(16) {
+    top: calc(33.33vh + 1500vh);
+  }
+  body span.marker:nth-of-type(17) {
+    top: calc(33.33vh + 1600vh);
+  }
+  body span.marker:nth-of-type(18) {
+    top: calc(33.33vh + 1700vh);
+  }
+  body span.marker:nth-of-type(19) {
+    top: calc(33.33vh + 1800vh);
+  }
+  body span.marker:nth-of-type(20) {
+    top: calc(33.33vh + 1900vh);
+  }
+  body span.marker:nth-of-type(21) {
+    top: calc(33.33vh + 2000vh);
+  }
+  body span.marker:nth-of-type(22) {
+    top: calc(33.33vh + 2100vh);
+  }
+  body span.marker:nth-of-type(23) {
+    top: calc(33.33vh + 2200vh);
+  }
+
+  body .intro {
+    position: fixed;
+    text-align: center;
+    top: 0;
+    left: 0;
+    padding: 30px 0 10px;
+    backdrop-filter: blur(4px);
+    width: 100vw;
+    background: rgba(255, 255, 255, 0.15);
+    z-index: 11;
+    transition: transform 0.75s ease-in-out 0.5s;
+    transform: translateY(-100%);
+  }
+  body .intro h1 {
+    font-family: "Plumbers";
+    font-size: clamp(10px, 10vh, 40px);
+    text-transform: uppercase;
+    color: var(--yellow);
+    text-shadow: 0 10px 0 #000;
+    -webkit-text-stroke: 1px var(--orange);
+  }
+  body .intro * {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    color: var(--yellow);
+    text-shadow: 0 2px var(--orange);
+  }
+
+  body.final .background .inner:after {
+    opacity: 1;
+  }
+
+  .background {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 0;
+    left: 0;
+    top: 0;
+  }
+  .background:before {
+    content: "";
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    background: url("https://assets.codepen.io/383755/lakitu.png") 50% 50%/contain no-repeat;
+    z-index: 9;
+    top: 125px;
+    left: 300vw;
+    transform: translateX(calc(var(--progress) * -5vw)) translateZ(0px);
+    animation: hover 3s ease-in-out infinite alternate;
+  }
+  @keyframes hover {
+    to {
+      transform: translateX(calc((var(--progress) * -5vw) + 300px)) translateZ(0px);
+    }
+  }
+  .background .inner {
+    --t: rgba(255, 255, 255, 0.0001);
+    position: absolute;
+    width: 2300vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    transform-style: preserve-3d;
+    background: linear-gradient(to right, #5d94fb 100px, var(--t) 100px) calc(400vw - 50px) 50%/100% auto, linear-gradient(to right, #5d94fb 45px, var(--t) 0px) 0% 0%/100% 100% no-repeat, linear-gradient(to bottom, #5d94fb calc(50% + 160px), var(--t) 50%), url("https://assets.codepen.io/383755/ground.jpg") 50% calc(50% + 35px)/50px 50px;
+    transform: translateX(calc(var(--progress) * -22vw)) translateZ(0px);
+  }
+  .background .inner:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 200%;
+    left: 0;
+    top: 0;
+    background: linear-gradient(to bottom, #000 calc(50% + 160px), var(--t) calc(50% + 160px)), url("https://assets.codepen.io/383755/ground.jpg") 50% calc(50% + 35px)/50px 50px;
+    filter: saturate(0);
+    opacity: 0;
+    z-index: 9;
+    transition: opacity 0.5s ease-in-out;
+  }
+  .background .inner:before {
+    content: "";
+    opacity: 0.5;
+    position: absolute;
+    width: calc(100% - 100vw);
+    left: 50vw;
+    background: repeating-linear-gradient(to right, var(--yellow) 10px, var(--t) 10px, var(--t) 30px, var(--yellow) 30px, var(--yellow) 40px) 0% 50%/calc(var(--progress) * 1%) 50% no-repeat;
+    height: 7.5px;
+    bottom: calc(50% + 97.5px);
+  }
+  .background .inner .mountain {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: -70px;
+    left: 0;
+    background: url("https://assets.codepen.io/383755/pngkit_hill-png_9681105.png") 50% 100%/contain no-repeat;
+    z-index: 3;
+  }
+  .background .inner .mountain:before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 400px;
+    background: inherit;
+    left: 25vw;
+    transform: translateX(calc(var(--progress) * 1vw)) translateZ(0px);
+  }
+  .background .inner .mountain:after {
+    content: "";
+    position: absolute;
+    left: -25vw;
+    height: 75px;
+    width: 200px;
+    background: url("https://assets.codepen.io/383755/bush.png") 50% 0%/100% auto no-repeat;
+    top: 325px;
+    transform: translateX(calc(var(--progress) * 2vw)) translateZ(0px);
+  }
+  .background .inner .cloud {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    top: calc(50% - 170px);
+    z-index: 2;
+    background: url("https://assets.codepen.io/383755/clouds_1.png") 0px 0px/450px auto no-repeat;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(4) .mountain {
+    display: none;
+  }
+  .background .inner .cloud:before, .background .inner .cloud:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: -35vw;
+    top: -100px;
+    background: url("https://assets.codepen.io/383755/clouds_1.png") -10px -105px/450px auto no-repeat;
+    transform: translateX(calc(var(--progress) * -2vw)) translateZ(0px);
+  }
+  .background .inner .cloud:after {
+    left: 25vw;
+    top: 100px;
+    transform: translateX(calc(var(--progress) * 2vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(1) {
+    left: calc(100vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(2) {
+    left: calc(200vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(3) {
+    left: calc(300vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(4) {
+    left: calc(400vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(5) {
+    left: calc(500vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(6) {
+    left: calc(600vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(7) {
+    left: calc(700vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(8) {
+    left: calc(800vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(9) {
+    left: calc(900vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(10) {
+    left: calc(1000vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(11) {
+    left: calc(1100vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(12) {
+    left: calc(1200vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(13) {
+    left: calc(1300vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(14) {
+    left: calc(1400vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(15) {
+    left: calc(1500vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(16) {
+    left: calc(1600vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(17) {
+    left: calc(1700vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(18) {
+    left: calc(1800vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(19) {
+    left: calc(1900vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(20) {
+    left: calc(2000vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(21) {
+    left: calc(2100vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(22) {
+    left: calc(2200vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(23) {
+    left: calc(2300vw - 50vw);
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain {
+    left: -12.5vw;
+  }
+  .background .inner .cloud:nth-of-type(3n) .mountain:after {
+    transform: translateX(calc((var(--progress) * 0.5vw))10vw) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even) .mountain:before {
+    left: 50vw;
+    transform: translateX(calc(var(--progress) * 0.5vw)) translateZ(0px);
+  }
+  .background .inner .cloud:nth-of-type(even):before {
+    top: -125px;
+  }
+  .background .inner .cloud:nth-of-type(even):after {
+    top: -200px;
+    transform: translateX(calc(var(--progress) * -0.25vw)) translateZ(0px);
+  }
+
+
+  #mario {
+    z-index: 1;
+    width: 160px;
+    height: 160px;
+    background: url("https://assets.codepen.io/383755/smb1_mario_sheet.gif") 50px -200px/800px auto no-repeat;
+    animation: var(--animation) clamp(0.125s, calc((5 - (var(--speed) / 2000)) * 0.025s), 0.5s) steps(3, start) infinite;
+    position: fixed;
+    left: calc(50% - 80px);
+    top: calc(50% + 5px);
+    transform: scaleX(var(--flip)) translateZ(0px);
+    transform-origin: 90px 50%;
+  }
+  @keyframes run {
+    from {
+      background-position: -427.5px -200px;
+    }
+    to {
+      background-position: -75px -200px;
+    }
+  }
+
+  .timeline {
+    padding: 0;
+    margin: 0;
+    z-index: 3;
+    position: fixed;
+    width: 2300vw;
+    height: 100vh;
+    transform: translateX(calc(var(--progress) * -22vw)) translateZ(0px);
+    list-style-type: none;
+  }
+  .timeline li {
+    height: 200px;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    font-size: 15px;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    background: linear-gradient(to right, #fff, #fff) 5px 5px/5px 5px no-repeat, linear-gradient(to right, #000, #000) 5px 5px/8px 8px no-repeat, linear-gradient(to right, #fff, #fff) calc(100% - 5px) 5px/5px 5px no-repeat, linear-gradient(to right, #000, #000) calc(100% - 2px) 5px/8px 8px no-repeat, linear-gradient(to right, #fff, #fff) 5px calc(100% - 5px)/5px 5px no-repeat, linear-gradient(to right, #000, #000) 5px calc(100% - 2px)/8px 8px no-repeat, linear-gradient(to right, #fff, #fff) calc(100% - 5px) calc(100% - 5px)/5px 5px no-repeat, linear-gradient(to right, #000, #000) calc(100% - 2px) calc(100% - 2px)/8px 8px no-repeat, var(--orange);
+    bottom: 50%;
+    z-index: 9;
+    color: #fcddcc;
+    box-shadow: -3px 0 0 #fff, 0 -3px 0 #fff, 0 3px 0 #000, 3px 0 0 #000, -3px 3px 0 #000;
+    text-shadow: 0 4px 0 #000;
+  }
+  .timeline li:nth-of-type(3n):after {
+    background: url(https://assets.codepen.io/383755/items.png) 0px -200px/900px auto no-repeat;
+    transform: translate(-1.5px, -7.5px);
+  }
+  .timeline li:nth-of-type(7):after {
+    background: url(https://assets.codepen.io/383755/pipe.gif) 50% 100%/contain no-repeat;
+    width: 300px;
+    height: 175px;
+    transform: none;
+    left: calc(50vw + 50% - 150px);
+    top: calc(50% + 135px);
+    clip-path: polygon(0 0, 100% 0, 100% 57.5%, 0 57.5%);
+  }
+  .timeline li:nth-of-type(7):before {
+    display: none;
+  }
+  .timeline li:nth-last-of-type(2):before {
+    animation: none;
+    left: calc(50vw + 50% - 42.5px);
+    background: url(https://assets.codepen.io/383755/bowser.gif) 0px 0px/auto 125px no-repeat;
+    top: calc(50% + 115px);
+    height: 125px;
+    width: 125px;
+    animation: bowser 0.5s steps(3, end) infinite;
+    transition: transform 0.5s ease-in-out;
+  }
+  @keyframes bowser {
+    to {
+      background-position: -360px 0px;
+    }
+  }
+  .timeline li:nth-last-of-type(2):after {
+    display: none;
+  }
+  .timeline li:last-of-type:before {
+    animation: none;
+    left: calc(100% + 85px);
+    background: url(https://assets.codepen.io/383755/items.png) -825px 0px/900px auto no-repeat;
+    top: calc(50% + 151.5px);
+  }
+  .timeline li:last-of-type:after {
+    display: none;
+  }
+    .timeline li:before, .timeline li:after {
+      content: "";
+      position: absolute;
+      background: url("https://assets.codepen.io/383755/items.png") 0px 0px/900px auto no-repeat;
+      height: 85px;
+      width: 85px;
+      z-index: 9;
+      left: calc(50vw + 50% - 42.5px);
+      top: calc(50% - 70px);
+      animation: flash 1s steps(1, end) infinite;
+    }
+  @keyframes flash {
+    50% {
+      background-position: -103px 0px;
+    }
+  }
+  .timeline li:after {
+    animation: none;
+    transform: translateY(-10px);
+    background: url("https://assets.codepen.io/383755/items.png") -415px -300px/900px auto no-repeat;
+    z-index: 8;
+    left: calc(50vw + 50% - 40px);
+  }
+  .timeline li time,
+  .timeline li > span {
+    position: absolute;
+    display: flex;
+    height: 50%;
+    justify-content: center;
+    align-items: center;
+    top: 0%;
+    line-height: 1;
+    overflow: hidden;
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+  .timeline li time .word,
+  .timeline li > span .word {
+    display: inline-block;
+    margin: 0 0.5rem;
+    transition: transform cubic-bezier(1, 0, 0, 1) 0.75s;
+    transition-delay: calc((var(--word-index) * 0.02s) + var(--modifier));
+  }
+  .timeline li time {
+    color: #fff;
+    --modifier: 0.15s;
+  }
+  .timeline li time .word {
+    transform: translateY(-200px);
+  }
+  .timeline li > span {
+    top: 50%;
+    align-items: flex-start;
+    --modifier: 0s;
+  }
+  .timeline li > span .word {
+    transform: translateY(200px);
+  }
+  .timeline li:nth-of-type(1) {
+    left: calc(0vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(2) {
+    left: calc(100vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(3) {
+    left: calc(200vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(4) {
+    left: calc(300vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(5) {
+    left: calc(400vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(6) {
+    left: calc(500vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(7) {
+    left: calc(600vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(8) {
+    left: calc(700vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(9) {
+    left: calc(800vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(10) {
+    left: calc(900vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(11) {
+    left: calc(1000vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(12) {
+    left: calc(1100vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(13) {
+    left: calc(1200vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(14) {
+    left: calc(1300vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(15) {
+    left: calc(1400vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(16) {
+    left: calc(1500vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(17) {
+    left: calc(1600vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(18) {
+    left: calc(1700vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(19) {
+    left: calc(1800vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(20) {
+    left: calc(1900vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(21) {
+    left: calc(2000vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(22) {
+    left: calc(2100vw + (50vw - 200px));
+  }
+  .timeline li:nth-of-type(23) {
+    left: calc(2200vw + (50vw - 200px));
+  }
+
+  body::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  body::-webkit-scrollbar-track {
+    background: var(--yellow);
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background-color: var(--orange);
+    outline: 1px solid var(--yellow);
+  }
+</style>
+  
+<body>
+<!-- partial:index.partial.html -->
+<div id='mario'></div>
+<div class='background'>
+  <div class='inner'>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+    <div class='cloud'><span class="mountain"></span></div>
+  </div>
+</div>
+
+<div class='intro'>
+  <h1>Check Out Your Area</h1>
+  <p>Try simulating any hypothetical scenarios!</p>
+</div>
+
+<form id="predictionForm">
+<ul class='timeline'>
+  <li><time data-splitting='words' datetime='1985-09'>We'll ask seven questions that enable our prediction model to predict the mortality</time><span data-splitting='words'></span>
+  </li>
+  <li><time data-splitting='words' datetime='1986-06'><label for="income">Question 1</label><input type="number" name="income" required><br></time><span data-splitting='words'>What percentage of your monthly income is spent on health-related expenditures, pushing you further below the poverty line? </span>
+  </li>
+  <li><time data-splitting='words' datetime='1988-10'><label for="forest_area">Question 2</label>
+  <input type="number" name="forest_area" required></time><span data-splitting='words'>What percentage of the land area in your region is covered by forests?</span>
+  </li>
+  <li><time data-splitting='words' datetime='1988-10'><label for="health_expenditure">Question 3</label>
+  <input type="number" name="health_expenditure" required></time><span data-splitting='words'>As a proportion of your country's GDP, how much is spent annually on national health expenditures?</span>
+  </li>
+  <li><time data-splitting='words' datetime='1989-04'><label for="out_of_pocket">Question 4</label>
+  <input type="number" name="out_of_pocket" required></time><span data-splitting='words'>On average, how much do you spend out-of-pocket for healthcare annually in current US dollars?</span>
+  </li>
+  <li><time data-splitting='words' datetime='1990-11'><label for="physician">Question 5</label>
+  <input type="number" name="physician" required></time><span data-splitting='words'>How many medical doctors (physicians) are available per 1,000 people in your area?</span>
+  </li>
+  <li><time data-splitting='words' datetime='1992-10'><label for="tuberculosis">Question 6</label>
+  <input type="number" name="tuberculosis" required></time><span data-splitting='words'>What is the incidence rate of tuberculosis in your region?</span>
+  </li>
+  <li><time data-splitting='words' datetime='1995-08'><label for="urban_pop">Question 7</label>
+  <input type="number" name="urban_pop" required></time><span data-splitting='words'>What percentage of the population in your area lives in urban areas?</span>
+  </li>
+  <li><time data-splitting='words' datetime='2021-02'><button type="button" onclick="predict()">Predict Mortality</button>
+    </time><span data-splitting='words'><p id="result">Predicted Mortality</p></span>
+  </li>
+  <li><time data-splitting='words' datetime='1996-06'>June 1996</time><span data-splitting='words'>Super Mario 64</span>
+  </li>
+  <li><time data-splitting='words' datetime='2002-07'>July 2002</time><span data-splitting='words'>Super Mario Sunshine</span>
+  </li>
+  <li><time data-splitting='words' datetime='2006-05'>May 2006</time><span data-splitting='words'>New Super Mario Bros.</span>
+  </li>
+  <li><time data-splitting='words' datetime='2007-11'>November 2007</time><span data-splitting='words'>Super Mario Galaxy</span>
+  </li>
+  <li><time data-splitting='words' datetime='2009-11'>November 2009</time><span data-splitting='words'>New Super Mario Bros. Wii</span>
+  </li>
+  <li><time data-splitting='words' datetime='2010-05'>May 2010</time><span data-splitting='words'>Super Mario Galaxy 2</span>
+  </li>
+  <li><time data-splitting='words' datetime='2011-11'>November 2011</time><span data-splitting='words'>Super Mario 3D Land</span>
+  </li>
+  <li><time data-splitting='words' datetime='2012-07'>July 2012</time><span data-splitting='words'>New Super Mario Bros 2</span>
+  </li>
+  <li><time data-splitting='words' datetime='2012-11'>November 2012</time><span data-splitting='words'>New Super Mario Bros. U</span>
+  </li>
+  <li><time data-splitting='words' datetime='2013-11'>November 2013</time><span data-splitting='words'>Super Mario 3D World</span>
+  </li>
+  <li><time data-splitting='words' datetime='2015-09'>September 2015</time><span data-splitting='words'>Super Mario Maker</span>
+  </li>
+  <li><time data-splitting='words' datetime='2016-12'>December 2016</time><span data-splitting='words'>Super Mario Run</span>
+  </li>
+  <li><time data-splitting='words' datetime='2017-10'>October 2017</time><span data-splitting='words'>Super Mario Odyssey</span>
+  </li>
+  <li><time data-splitting='words' datetime='2019-06'>June 2019</time><span data-splitting='words'>Super Mario Maker 2</span>
+  </li>
+  </form>
+</ul>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+  <span class='marker'></span>
+
+<!-- partial -->
+  <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/gsap-latest-beta.min.js?r=5426'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/ScrollTrigger.min.js'></script>
+<script src='https://unpkg.com/splitting@1.0.5/dist/splitting.min.js'></script>
+
+<script>
+  const mario = document.getElementById("mario");
+  const body = document.body;
+
+  Splitting();
+
+  ScrollTrigger.create({
+    trigger: "body",
+    start: "top top",
+    end: "bottom bottom",
+    scrub: 1,
+    onUpdate: (self) => {
+      body.style.setProperty("--progress", self.progress * 100);
+      if (self.progress > 0.95) {
+        body.classList.add("final");
+        mario.style.setProperty("--boost", "-35px");
+      } else {
+        body.classList.remove("final");
+        mario.style.setProperty("--boost", "0px");
+      }
+    }
+  });
+
+  gsap.utils.toArray(".marker").forEach((marker, index) => {
+    gsap.to(this, {
+      scrollTrigger: {
+        trigger: marker,
+        start: "top 0%",
+        end: "bottom 0%",
+        scrub: 0,
+        onUpdate: (self) => {
+          if (self.progress < 0.5) {
+            mario.style.setProperty("--progress", self.progress);
+          } else {
+            mario.style.setProperty("--progress", 1 - self.progress);
+            body.classList.add("coin" + index);
+          }
+        },
+        onEnter: () => {
+          body.classList.add("jump");
+        },
+        onEnterBack: () => {
+          body.classList.add("jump");
+        },
+        onLeave: () => {
+          body.classList.remove("jump");
+          body.classList.remove("coin" + (index + 1));
+        },
+        onLeaveBack: () => {
+          body.classList.remove("jump");
+          body.classList.remove("coin" + (index + 1));
+        }
+      }
+    });
+  });
+
+  gsap.to("body", {
+    opacity: 1,
+    scrollTrigger: {
+      trigger: "body",
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 0.05,
+      onScrubComplete: () => {
+        mario.style.setProperty("--animation", "stand");
+      },
+      onUpdate: ({ getVelocity }) => {
+        mario.style.setProperty("--animation", "run");
+        if (getVelocity() < 1) {
+          mario.style.setProperty("--flip", "-1");
+        } else {
+          mario.style.setProperty("--flip", "1");
+        }
+        const speed = Math.abs(Math.round(getVelocity()));
+        mario.style.setProperty("--speed", speed);
+      }
+    }
+  });
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+      body.classList.add("loaded");
+    },
+    false
+  );
+
+  function predict() {
+      // Get form data
+      var form = document.getElementById("predictionForm");
+      var formData = new FormData(form);
+
+      // Send data to the server using AJAX
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "/area", true);
+      xhr.onload = function () {
+          if (xhr.status === 200) {
+              var result = JSON.parse(xhr.responseText);
+
+              // Display predicted mortality rates with context
+              var displayText = "Estimated Female Mortality Rate: " + result.predicted_female_mortality.toFixed(2) + " ppl per 100,000 per year<br>" +
+                                "Estimated Male Mortality Rate: " + result.predicted_male_mortality.toFixed(2) + " ppl per 100,000 per year";
+
+              document.getElementById("result").innerHTML = displayText;
+          } else {
+              console.error(xhr.statusText);
+          }
+      };
+      xhr.send(formData);
+  }
+</script>
+
+</body>
+</html>
