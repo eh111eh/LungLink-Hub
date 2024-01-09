@@ -14,7 +14,7 @@ let frames = [
 
 // Define the URLs for each panel
 const panelUrls = {
-  'Check Out Your Area!': '/area',
+  'Discover Insights': '/area',
   'ML': '/ml',
   'Statistics': '/statistics',
   'Community': '/community',
