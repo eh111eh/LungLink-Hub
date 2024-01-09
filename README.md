@@ -51,7 +51,7 @@ The performance of the research can be evaluated through the following metrics:
 - Mean Squared Error (MSE) for regression models predicting lung cancer survival rates.
 - F1 Score for classification models assessing the impact of societal factors on survival outcomes.
 
-## Prediction Procedure (Discover Insights Page)
+Prediction Procedure (Discover Insights Page)
 
 ## Usage
 **URL**: <br/>
