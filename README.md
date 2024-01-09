@@ -19,7 +19,7 @@ This research aims to provide valuable insights for policymakers, healthcare pro
   - Type of Problems: Exploratory data analysis, correlation analysis, regression analysis.
 
 ## Tool
-Python, Flask, SQL(MySQL), HTML/CSS/JavaScript
+ML (Adaboost), Python, Flask, SQL(MySQL), HTML/CSS/JavaScript
 
 ## Data
 
@@ -40,7 +40,7 @@ The input features in the X dataframe include:
 - c_tuberculosis: Incidence of Tuberculosis (Per 100,000 People)
 - c_urban_pop: The Percentage of the Total Population living in Urban Areas
 
-## Model
+## Model (need edit)
 **Model in Use**: <br/> 
 Linear Regression, Adaboost, GBRT, Random Forest, Stacking, Decision Tree, LSTM (Neural Network)
 
@@ -50,6 +50,8 @@ The performance of the research can be evaluated through the following metrics:
 - Correlation coefficients between societal factors and lung cancer survival rates.
 - Mean Squared Error (MSE) for regression models predicting lung cancer survival rates.
 - F1 Score for classification models assessing the impact of societal factors on survival outcomes.
+
+## Prediction Procedure (Discover Insights Page)
 
 ## Usage
 **URL**: <br/>
