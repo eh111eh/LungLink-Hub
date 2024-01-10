@@ -37,7 +37,7 @@ The input features in the X dataframe include:
 **URL**: <br/>
 https://lunglink-hub.onrender.com
 
-**Installation Instructions**
+**Installation Instructions**: <br/>
 You need to install the following first
 - Flask==3.0.0
 - gunicorn==21.2.0
@@ -46,7 +46,7 @@ You need to install the following first
 - scikit-learn==1.3.2
 - pandas==2.1.4
 
-**Usage Guidelines**
+**Usage Guidelines**: <br/>
 We offer three main pages on our platform: Discover Insights, Machine Learning, and Statistics.
 
 - Discover Insights: This page allows you to simulate hypothetical scenarios for predicting lung cancer mortality by inputting seven socio-economic factors.
