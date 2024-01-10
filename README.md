@@ -1,24 +1,17 @@
 # LungLink Hub
 
 Collaborators: Hwayeon Kang, Minha Kim
+Selected Theme: HealthCare - Health Equity
 
 ## Abstract / Summary
 This study explores the correlation between lung cancer survival rates and societal factors on a global scale. While existing research has linked lung cancer to environmental pollutants and resource accessiblity in the U.S., little is known about how broader societal influences contribute to varied health outcomes worldwide. Through a comprehensive analysis of diverse variables, including healthcare accessibility, socio-economic conditions, and cultural factors, this research aims to uncover patterns and relationships that can deepen our understanding of lung cancer survival dynamics. Our machine learning approach empowers users to predict lung cancer mortality in various hypothetical scenarios, utilizing seven socio-economic factors.
 
 By investigating the interplay between lung cancer outcomes and societal factors, this research seeks to inform public health policies and resource allocation strategies. The study's findings may offer valuable insights into addressing the complexities of lung cancer on a global level, ultimately contributing to more effective interventions and equitable health outcomes.
 
-## Selected Theme
-HealthCare - Health Equity
-
 ## Goal / Purpose
 
 **Value for end-user**: <br/>
 This research aims to provide valuable insights for policymakers, healthcare professionals, and public health organizations. By understanding the complex interplay between societal factors and lung cancer outcomes, it contributes to the development of more effective interventions and strategies for improving global health equity.
-
-**Input, output, type of problems**
-  - Input: Seven key factors including healthcare accessibility, socio-economic conditions, and cultural influences.
-  - Output: Lung cancer survival rates by country and year.
-  - Type of Problems: Exploratory data analysis, correlation analysis, regression analysis.
 
 ## Model
 <img width="998" alt="ml_procedure" src="https://github.com/eh111eh/LungLink-Hub/assets/97640870/7234031c-29ca-4113-ad42-4f2ff1b01038">
