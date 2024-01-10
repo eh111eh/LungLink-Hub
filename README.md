@@ -1,5 +1,9 @@
 # LungLink Hub: Global Correlations of Lung Cancer Survival Rates with Societal Factors
 
+# Collaborators
+- Hwayeon Kang
+- Minha Kim
+
 ## Abstract / Summary
 This study explores the correlation between lung cancer survival rates and societal factors on a global scale. While existing research has linked lung cancer to environmental pollutants and resource accessiblity in the U.S., little is known about how broader societal influences contribute to varied health outcomes worldwide. Through a comprehensive analysis of diverse variables, including healthcare accessibility, socio-economic conditions, and cultural factors, this research aims to uncover patterns and relationships that can deepen our understanding of lung cancer survival dynamics.
 
@@ -18,9 +22,6 @@ This research aims to provide valuable insights for policymakers, healthcare pro
   - Output: Lung cancer survival rates by country and year.
   - Type of Problems: Exploratory data analysis, correlation analysis, regression analysis.
 
-## Tool
-ML (Adaboost), Python, Flask, SQL(MySQL), HTML/CSS/JavaScript
-
 ## Data
 
 **Source**: <br/>
@@ -32,36 +33,36 @@ The dataset consists of multiple dataframes. The primary dataframe, denoted as X
 **Input features**: <br/>
 The input features in the X dataframe include:
 
-- c_dollar2_poverty: Proportion of Population Pushed Below 3 dollar and 65 cents Poverty Line by Out-of-Pocket Health Care Expenditure
-- c_forest_area: The Percentage of Land Area covered by Forest
-- c_health_expenditure: The Percentage of a Country's GDP that goes towards Health Expenditures
-- c_out_of_pocket: Out-of-Pocket Expenditure per Capita (Current US Dollars)
-- c_physician: Physicians (Per 1000 People)
-- c_tuberculosis: Incidence of Tuberculosis (Per 100,000 People)
-- c_urban_pop: The Percentage of the Total Population living in Urban Areas
+- dollar2_poverty: Proportion of Population Pushed Below 3 dollar and 65 cents Poverty Line by Out-of-Pocket Health Care Expenditure
+- forest_area: The Percentage of Land Area covered by Forest
+- health_expenditure: The Percentage of a Country's GDP that goes towards Health Expenditures
+- out_of_pocket: Out-of-Pocket Expenditure per Capita (Current US Dollars)
+- physician: Physicians (Per 1000 People)
+- tuberculosis: Incidence of Tuberculosis (Per 100,000 People)
+- urban_pop: The Percentage of the Total Population living in Urban Areas
 
-## Model (need edit)
-**Model in Use**: <br/> 
-Linear Regression, Adaboost, GBRT, Random Forest, Stacking, Decision Tree, LSTM (Neural Network)
-
-**How to evaluate performance**: <br/>
-The performance of the research can be evaluated through the following metrics:
-
-- Correlation coefficients between societal factors and lung cancer survival rates.
-- Mean Squared Error (MSE) for regression models predicting lung cancer survival rates.
-- F1 Score for classification models assessing the impact of societal factors on survival outcomes.
-
-Prediction Procedure (Discover Insights Page)
+## Model
+<img width="998" alt="ml_procedure" src="https://github.com/eh111eh/LungLink-Hub/assets/97640870/7234031c-29ca-4113-ad42-4f2ff1b01038">
 
 ## Usage
 **URL**: <br/>
 https://lunglink-hub.onrender.com
 
 **Installation Instructions**
-
-**Prerequisites**
+You need to install the following first
+- Flask==3.0.0
+- gunicorn==21.2.0
+- sqlalchemy==2.0.23
+- pymysql==1.1.0
+- scikit-learn==1.3.2
+- pandas==2.1.4
 
 **Usage Guidelines**
+We offer three main pages on our platform: Discover Insights, Machine Learning, and Statistics.
+
+- Discover Insights: This page allows you to simulate hypothetical scenarios for predicting lung cancer mortality by inputting seven socio-economic factors.
+- Machine Learning: Here, you can delve into the machine learning methods used for prediction, explore the performance evaluation of various ML techniques, and understand why we have chosen Adaboost.
+- Statistics: On this page, you can explore charts depicting the seven factors by country using a search tool. Additionally, we provide global maps for both male and female populations, highlighting crucial insights for public health interventions, resource allocation, and targeted cancer prevention strategies. These visualizations contribute to global efforts to mitigate the impact of lung cancer and enhance overall health outcomes on a worldwide scale.
 
 ## Reference
 - Lung Cancer Survival Rates : https://gco.iarc.fr/overtime/en/dataviz/trends
@@ -74,7 +75,3 @@ https://lunglink-hub.onrender.com
 - Incidence of Tuberculosis (Per 100,000 People) : https://data.worldbank.org/indicator/SH.TBS.INCD
 - Urban Population (% of Total Population) : https://data.worldbank.org/indicator/SP.URB.TOTL.IN.ZS"
 - HTML : https://codepen.io/alliwagner/pen/nOPZob, https://codepen.io/cobra_winfrey/pen/OJRjBoj
-
-# Collaborators
-- Hwayeon Kang
-- Minha Kim
