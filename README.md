@@ -2,7 +2,6 @@
 
 Collaborators: Hwayeon Kang, Minha Kim </br>
 Selected Theme: HealthCare - Health Equity </br>
-GFG Article: 
 
 ## Abstract / Summary
 This study explores the correlation between lung cancer survival rates and societal factors on a global scale. While existing research has linked lung cancer to environmental pollutants and resource accessiblity in the U.S., little is known about how broader societal influences contribute to varied health outcomes worldwide. Through a comprehensive analysis of diverse variables, including healthcare accessibility, socio-economic conditions, and cultural factors, this research aims to uncover patterns and relationships that can deepen our understanding of lung cancer survival dynamics. Our machine learning approach empowers users to predict lung cancer mortality in various hypothetical scenarios, utilizing seven socio-economic factors.
@@ -43,3 +42,6 @@ We offer three main pages on our platform: Discover Insights, Machine Learning, 
 - Incidence of Tuberculosis (Per 100,000 People) : https://data.worldbank.org/indicator/SH.TBS.INCD
 - Urban Population (% of Total Population) : https://data.worldbank.org/indicator/SP.URB.TOTL.IN.ZS"
 - HTML : https://codepen.io/alliwagner/pen/nOPZob, https://codepen.io/cobra_winfrey/pen/OJRjBoj
+
+**Get more insights : **
+
