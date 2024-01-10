@@ -36,13 +36,13 @@ The dataset consists of multiple dataframes. The primary dataframe, denoted as X
 **Input features**: <br/>
 The input features in the X dataframe include:
 
-- dollar2_poverty: Proportion of Population Pushed Below 3 dollar and 65 cents Poverty Line by Out-of-Pocket Health Care Expenditure
-- forest_area: The Percentage of Land Area covered by Forest
-- health_expenditure: The Percentage of a Country's GDP that goes towards Health Expenditures
-- out_of_pocket: Out-of-Pocket Expenditure per Capita (Current US Dollars)
+- dollar2 poverty: Proportion of Population Pushed Below 3 dollar and 65 cents Poverty Line by Out-of-Pocket Health Care Expenditure
+- forest area: The Percentage of Land Area covered by Forest
+- health expenditure: The Percentage of a Country's GDP that goes towards Health Expenditures
+- out-of-pocket: Out-of-Pocket Expenditure per Capita (Current US Dollars)
 - physician: Physicians (Per 1000 People)
 - tuberculosis: Incidence of Tuberculosis (Per 100,000 People)
-- urban_pop: The Percentage of the Total Population living in Urban Areas
+- urban pop: The Percentage of the Total Population living in Urban Areas
 
 ## Usage
 **URL**: <br/>
