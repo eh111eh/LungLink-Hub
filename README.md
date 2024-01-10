@@ -22,6 +22,9 @@ This research aims to provide valuable insights for policymakers, healthcare pro
   - Output: Lung cancer survival rates by country and year.
   - Type of Problems: Exploratory data analysis, correlation analysis, regression analysis.
 
+## Model
+<img width="998" alt="ml_procedure" src="https://github.com/eh111eh/LungLink-Hub/assets/97640870/7234031c-29ca-4113-ad42-4f2ff1b01038">
+
 ## Data
 
 **Source**: <br/>
@@ -40,9 +43,6 @@ The input features in the X dataframe include:
 - physician: Physicians (Per 1000 People)
 - tuberculosis: Incidence of Tuberculosis (Per 100,000 People)
 - urban_pop: The Percentage of the Total Population living in Urban Areas
-
-## Model
-<img width="998" alt="ml_procedure" src="https://github.com/eh111eh/LungLink-Hub/assets/97640870/7234031c-29ca-4113-ad42-4f2ff1b01038">
 
 ## Usage
 **URL**: <br/>
