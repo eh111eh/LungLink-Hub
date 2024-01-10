@@ -2516,8 +2516,8 @@
               var result = JSON.parse(xhr.responseText);
 
               // Display predicted mortality rates with context
-              var displayText = "Estimated Female Mortality Rate: " + result.predicted_female_mortality.toFixed(2) + " ppl per 100,000 per year<br>" +
-                                "Estimated Male Mortality Rate: " + result.predicted_male_mortality.toFixed(2) + " ppl per 100,000 per year";
+              var displayText = "Female: " + result.predicted_female_mortality.toFixed(2) + " ppl per 100,000 per year<br>" +
+                                "Male: " + result.predicted_male_mortality.toFixed(2) + " ppl per 100,000 per year";
 
               document.getElementById("result").innerHTML = displayText;
           } else {
