@@ -2,6 +2,7 @@
 
 Collaborators: Hwayeon Kang, Minha Kim
 Selected Theme: HealthCare - Health Equity
+GFG Article: 
 
 ## Abstract / Summary
 This study explores the correlation between lung cancer survival rates and societal factors on a global scale. While existing research has linked lung cancer to environmental pollutants and resource accessiblity in the U.S., little is known about how broader societal influences contribute to varied health outcomes worldwide. Through a comprehensive analysis of diverse variables, including healthcare accessibility, socio-economic conditions, and cultural factors, this research aims to uncover patterns and relationships that can deepen our understanding of lung cancer survival dynamics. Our machine learning approach empowers users to predict lung cancer mortality in various hypothetical scenarios, utilizing seven socio-economic factors.
@@ -13,25 +14,6 @@ This research aims to provide valuable insights for policymakers, healthcare pro
 
 ## Model
 <img width="998" alt="ml_procedure" src="https://github.com/eh111eh/LungLink-Hub/assets/97640870/7234031c-29ca-4113-ad42-4f2ff1b01038">
-
-## Data
-
-**Source**: <br/>
-The data is sourced from the WorldBank site and covers multiple countries globally.
-
-**Quantity, shape, type**: <br/>
-The dataset consists of multiple dataframes. The primary dataframe, denoted as X, contains information for different countries and years. The observations (rows) are indexed by the 'country' and further contextualized by the 'year' attribute, with columns representing various features such as poverty proportion, forest area, health expenditure, etc. There is also a dataframe denoted as y_mortality containing data on the age-standardized rate of mortality for lung cancer.
-
-**Input features**: <br/>
-The input features in the X dataframe include:
-
-- dollar2 poverty: Proportion of Population Pushed Below 3 dollar and 65 cents Poverty Line by Out-of-Pocket Health Care Expenditure
-- forest area: The Percentage of Land Area covered by Forest
-- health expenditure: The Percentage of a Country's GDP that goes towards Health Expenditures
-- out-of-pocket: Out-of-Pocket Expenditure per Capita (Current US Dollars)
-- physician: Physicians (Per 1000 People)
-- tuberculosis: Incidence of Tuberculosis (Per 100,000 People)
-- urban pop: The Percentage of the Total Population living in Urban Areas
 
 ## Usage
 **URL**: <br/>
