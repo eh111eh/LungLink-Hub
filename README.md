@@ -43,5 +43,5 @@ We offer three main pages on our platform: Discover Insights, Machine Learning, 
 - Urban Population (% of Total Population) : https://data.worldbank.org/indicator/SP.URB.TOTL.IN.ZS"
 - HTML : https://codepen.io/alliwagner/pen/nOPZob, https://codepen.io/cobra_winfrey/pen/OJRjBoj
 
-**Get more insights : **
+**Get more insights :**
 
