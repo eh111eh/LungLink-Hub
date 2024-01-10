@@ -1,7 +1,7 @@
 # LungLink Hub
 
-Collaborators: Hwayeon Kang, Minha Kim
-Selected Theme: HealthCare - Health Equity
+Collaborators: Hwayeon Kang, Minha Kim </br>
+Selected Theme: HealthCare - Health Equity </br>
 GFG Article: 
 
 ## Abstract / Summary
